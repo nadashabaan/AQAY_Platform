@@ -1,42 +1,62 @@
-#root {
-  max-width: 1280px;
+.signup-form {
+  max-width: 400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
+  background-color: #ffe5d9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form h2 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.signup-form form {
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signup-form input[type="email"],
+.signup-form input[type="password"],
+.signup-form select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.signup-form .gender {
+  margin-bottom: 15px;
 }
 
-.card {
-  padding: 2em;
+.signup-form .gender label {
+  margin-right: 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.signup-form .gender input[type="radio"] {
+  margin-right: 5px;
+}
+
+.signup-form button[type="submit"] {
+  padding: 10px;
+  background-color: #f76c6c;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.signup-form button[type="submit"]:hover {
+  background-color: #f44336;
+}
+
+.signup-form a {
+  color: #f76c6c;
+  text-decoration: none;
+}
+
+.signup-form a:hover {
+  text-decoration: underline;
 }
