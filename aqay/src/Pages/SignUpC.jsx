@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom/dist";
+// import SUC from "./Images/SUC.png";
 
-function SignUpForm() {
+function SignUpFormC() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -37,7 +39,11 @@ function SignUpForm() {
             difference, one purchase at a time. Start your shopping adventure
             today!
           </p>
-          <button>Join us as Merchant</button>
+          <Link to="/SignUpM">
+            <button>Join us as Merchant</button>
+          </Link>
+
+          {/* <img src={SUC} /> */}
         </div>
         <div className="right-section">
           <div className="signup-form">
@@ -54,17 +60,54 @@ function SignUpForm() {
                 placeholder="Confirm your password"
                 required
               />
+              <label>Date of birth</label>
+              {/* 
               <div className="date-of-birth">
                 <select>
-                  <option value="">Day</option>
+                  <option value="" disabled selected hidden>
+                    Day
+                  </option>
+                  <option value="1">Monday</option>
+                  <option value="2">Tuesday</option>
+                  <option value="3">Wednesday</option>
+                  <option value="4">Thursday</option>
+                  <option value="5">Friday</option>
+                  <option value="6">Saturday</option>
+                  <option value="7">Sunday</option>
                 </select>
                 <select>
-                  <option value="">Month</option>
+                  <option value="" disabled selected hidden>
+                    Month
+                  </option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
                 </select>
                 <select>
                   <option value="">Year</option>
+                  <option value="2000">2000</option>
+                  <option value="2001">2001</option>
+                  <option value="2002">2002</option>
+                  <option value="2003">2003</option>
+                  <option value="2004">2004</option>
+                  <option value="2005">2005</option>
+                  <option value="2006">2006</option>
+                  <option value="2007">2007</option>
+                  <option value="2008">2008</option>
+                  <option value="2009">2009</option>
+                  <option value="2010">2010</option>
                 </select>
-              </div>
+              </div> */}
+              <label>Gender</label>
               <div>
                 <label>
                   <input type="radio" name="gender" value="female" /> Female
@@ -73,8 +116,8 @@ function SignUpForm() {
                   <input type="radio" name="gender" value="male" /> Male
                 </label>
               </div>
-              <button type="submit">SIGN UP</button>
               <a href="/login">if you already have an account LOGIN</a>
+              <button type="submit">SIGN UP</button>
             </form>
           </div>
         </div>
@@ -83,4 +126,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default SignUpFormC;

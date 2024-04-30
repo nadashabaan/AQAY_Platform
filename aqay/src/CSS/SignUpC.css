@@ -1,0 +1,125 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #fff0e7;
+}
+
+.left-section {
+  width: 80%;
+  padding: 20px;
+  text-align: justify;
+}
+
+.left-section h1 {
+  color: #000000;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.left-section p {
+  color: #000000;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.left-section button {
+  background-color: #eb4d3b;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+  top: 20px;
+  left: 750px;
+}
+
+.left-section button:hover {
+  background-color: #b33224;
+}
+
+.right-section {
+  width: 40%;
+  height: 500px;
+  background-color: #f7a96f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+}
+
+.signup-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.signup-form h2 {
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 33px;
+}
+
+.signup-form input[type="email"],
+.signup-form input[type="password"],
+.signup-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.signup-form .date-of-birth select {
+  width: calc(33% - 4px);
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.signup-form .date-of-birth select:last-child {
+  margin-right: 0;
+}
+
+.signup-form input[type="radio"] {
+  margin-right: 5px;
+}
+
+.signup-form label {
+  margin-right: 20px;
+}
+
+.signup-form button {
+  width: 100%;
+  background-color: #eb4d3b;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.signup-form button:hover {
+  background-color: #b33224;
+}
+
+.signup-form a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+.signup-form a:hover {
+  text-decoration: underline;
+}
