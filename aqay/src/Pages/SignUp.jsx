@@ -24,88 +24,62 @@ function SignUpForm() {
   };
 
   return (
-    <div className="signup-form">
-      <h2>SIGN UP</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          placeholder="Enter your email"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-          placeholder="Enter your password"
-          required
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleInputChange}
-          placeholder="Confirm your password"
-          required
-        />
-        <div className="date-of-birth">
-          {/* You can replace these inputs with a date picker component */}
-          <select
-            name="day"
-            value={formData.dateOfBirth.day}
-            onChange={handleInputChange}
-            required
-          >
-            {/* Populate options for days */}
-          </select>
-          <select
-            name="month"
-            value={formData.dateOfBirth.month}
-            onChange={handleInputChange}
-            required
-          >
-            {/* Populate options for months */}
-          </select>
-          <select
-            name="year"
-            value={formData.dateOfBirth.year}
-            onChange={handleInputChange}
-            required
-          >
-            {/* Populate options for years */}
-          </select>
+    <>
+      <div className="container">
+        <div className="left-section">
+          <h1>Get Started Today</h1>
+          <p>
+            Welcome to our vibrant marketplace, where every purchase tells a
+            story. Dive into a world of unique finds, crafted with passion by
+            local artisans. From handmade treasures to artisanal delicacies,
+            explore the heart and soul of your community with each click. Join
+            us in celebrating creativity, supporting local talent, and making a
+            difference, one purchase at a time. Start your shopping adventure
+            today!
+          </p>
+          <button>Join us as Merchant</button>
         </div>
-        <div className="gender">
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              checked={formData.gender === "female"}
-              onChange={handleInputChange}
-            />
-            Female
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="male"
-              checked={formData.gender === "male"}
-              onChange={handleInputChange}
-            />
-            Male
-          </label>
+        <div className="right-section">
+          <div className="signup-form">
+            <h2>SIGN UP</h2>
+            <form>
+              <input type="email" placeholder="Enter your email" required />
+              <input
+                type="password"
+                placeholder="Enter your password"
+                required
+              />
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                required
+              />
+              <div className="date-of-birth">
+                <select>
+                  <option value="">Day</option>
+                </select>
+                <select>
+                  <option value="">Month</option>
+                </select>
+                <select>
+                  <option value="">Year</option>
+                </select>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" name="gender" value="female" /> Female
+                </label>
+                <label>
+                  <input type="radio" name="gender" value="male" /> Male
+                </label>
+              </div>
+              <button type="submit">SIGN UP</button>
+              <a href="/login">if you already have an account LOGIN</a>
+            </form>
+          </div>
         </div>
-        <button type="submit">SIGN UP</button>
-        <p>
-          if you already have an account <a href="/login">LOGIN</a>
-        </p>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }
 
