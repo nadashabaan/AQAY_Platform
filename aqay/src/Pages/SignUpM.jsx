@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 function SignUpFormM() {
   const [formData, setFormData] = useState({
     email: "",
@@ -66,7 +67,7 @@ function SignUpFormM() {
               />
               <label>Gender</label>
 
-              <a href="/login">if you already have an account LOGIN</a>
+              <Link to="/SignIn">If you already have an account Sign in</Link>
               <button type="submit">SIGN UP</button>
             </form>
           </div>

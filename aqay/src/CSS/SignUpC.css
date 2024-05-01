@@ -76,20 +76,12 @@
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-.signup-form .date-of-birth select {
-  width: calc(33% - 4px);
-  display: inline-block;
-  margin-right: 6px;
-}
-
-.signup-form .date-of-birth select:last-child {
-  margin-right: 0;
+  background-color: #fff0e7;
 }
 
 .signup-form input[type="radio"] {
   margin-right: 5px;
+  background-color: #fff0e7;
 }
 
 .signup-form label {
@@ -123,3 +115,47 @@
 .signup-form a:hover {
   text-decoration: underline;
 }
+/* if you want to hidde the scrollbar uncomment the below section */
+/* ::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+} */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #fff0e7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f7a96f;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #eb4d3b;
+}
+
+input[type="date"] {
+  width: 200px; /* set width */
+  padding: 10px; /* set padding */
+  border: 1px solid #eb4d3b; /* set border */
+  border-radius: 5px; /* round corners */
+  background-color: #f7a96f; /* set background color */
+}
+
+/* Optional: Style for when the date input field is focused */
+
+input[type="date"]:focus {
+  border-color: #eb4d3b; /* change border color on focus */
+  /* change background color on focus */
+}
+
+/* Optional: Style for the date input field's arrow */
+/* input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+} */

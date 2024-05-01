@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom/dist";
-// import SUC from "./Images/SUC.png";
+import { Link } from "react-router-dom";
+import SUC from "../assets/Images/SUC.png";
 
 function SignUpFormC() {
   const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ function SignUpFormC() {
             <button>Join us as Merchant</button>
           </Link>
 
-          {/* <img src={SUC} /> */}
+          <img src={SUC} />
         </div>
         <div className="right-section">
           <div className="signup-form">
@@ -60,63 +60,38 @@ function SignUpFormC() {
                 placeholder="Confirm your password"
                 required
               />
-              <label>Date of birth</label>
-              {/* 
-              <div className="date-of-birth">
-                <select>
-                  <option value="" disabled selected hidden>
-                    Day
-                  </option>
-                  <option value="1">Monday</option>
-                  <option value="2">Tuesday</option>
-                  <option value="3">Wednesday</option>
-                  <option value="4">Thursday</option>
-                  <option value="5">Friday</option>
-                  <option value="6">Saturday</option>
-                  <option value="7">Sunday</option>
-                </select>
-                <select>
-                  <option value="" disabled selected hidden>
-                    Month
-                  </option>
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
-                </select>
-                <select>
-                  <option value="">Year</option>
-                  <option value="2000">2000</option>
-                  <option value="2001">2001</option>
-                  <option value="2002">2002</option>
-                  <option value="2003">2003</option>
-                  <option value="2004">2004</option>
-                  <option value="2005">2005</option>
-                  <option value="2006">2006</option>
-                  <option value="2007">2007</option>
-                  <option value="2008">2008</option>
-                  <option value="2009">2009</option>
-                  <option value="2010">2010</option>
-                </select>
-              </div> */}
-              <label>Gender</label>
               <div>
+                <label>Date of birth</label>
+                <input
+                  className="DOB"
+                  type="date"
+                  required
+                  name="Date of birth"
+                  placeholder="Date of birth"
+                ></input>
+              </div>
+              <label>Gender</label>
+              <div className="custom-radio">
                 <label>
-                  <input type="radio" name="gender" value="female" /> Female
+                  <input
+                    className="custom-radio"
+                    type="radio"
+                    name="gender"
+                    value="female"
+                  />{" "}
+                  Female
                 </label>
                 <label>
-                  <input type="radio" name="gender" value="male" /> Male
+                  <input
+                    className="custom-radio"
+                    type="radio"
+                    name="gender"
+                    value="male"
+                  />{" "}
+                  Male
                 </label>
               </div>
-              <a href="/login">if you already have an account LOGIN</a>
+              <Link to="/SignIn">If you already have an account Sign in</Link>
               <button type="submit">SIGN UP</button>
             </form>
           </div>

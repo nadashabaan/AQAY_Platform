@@ -12,11 +12,14 @@ import "./CSS/SignUpC.css";
 import "./CSS/SignUpM.css";
 import SignUpFormC from "./Pages/SignUpC";
 import SignUpFormM from "./Pages/SignUpM";
+import { SignIn } from "./Pages/SignIn";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<SignUpFormC />}>
+    <Route>
+      <Route index element={<SignUpFormC />} />
       <Route path="/SignUpM" element={<SignUpFormM />} />
+      <Route path="/SignIn" element={<SignIn />} />
     </Route>
   )
 );
