@@ -1,3 +1,8 @@
+.SignInPhoto {
+  margin-top: 200px; /* Push image down by 20px */
+  margin-left: 30px;
+}
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -8,6 +13,7 @@
 
 .left-section {
   width: 80%;
+  height: 950px;
   padding: 20px;
   text-align: justify;
 }
@@ -27,26 +33,13 @@
   text-align: left;
 }
 
-.left-section button {
-  background-color: #eb4d3b;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 16px;
-  position: relative;
-  top: 20px;
-  left: 750px;
-}
-
 .left-section button:hover {
   background-color: #b33224;
 }
 
-.right-section {
+.right-section-I {
   width: 40%;
-  height: 500px;
+  height: 320px;
   background-color: #f7a96f;
   display: flex;
   flex-direction: column;
@@ -58,18 +51,21 @@
 .signup-form {
   width: 100%;
   max-width: 400px;
+  display: inline-block;
 }
 
 .signup-form h2 {
   text-align: center;
   font-weight: bold;
   color: #000;
-  margin-bottom: 20px;
+  margin-top: 30px;
   font-size: 33px;
 }
 
 .signup-form input[type="email"],
 .signup-form input[type="password"],
+.signup-form input[type="number"],
+.signup-form input[type="tel"],
 .signup-form select {
   width: 100%;
   padding: 8px;
@@ -79,9 +75,18 @@
   background-color: #fff0e7;
 }
 
+.signup-form .date-of-birth select {
+  width: calc(33% - 4px);
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.signup-form .date-of-birth select:last-child {
+  margin-right: 0;
+}
+
 .signup-form input[type="radio"] {
   margin-right: 5px;
-  background-color: #fff0e7;
 }
 
 .signup-form label {
@@ -96,7 +101,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .signup-form button:hover {
@@ -108,54 +113,10 @@
   text-decoration: none;
   display: block;
   text-align: left;
-  margin-top: 25px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
 .signup-form a:hover {
   text-decoration: underline;
 }
-/* if you want to hidde the scrollbar uncomment the below section */
-/* ::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  scrollbar-width: none;
-} */
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background-color: #fff0e7;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #f7a96f;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #eb4d3b;
-}
-
-input[type="date"] {
-  width: 100%;
-  padding: 10px; /* set padding */
-  border: 1px solid #eb4d3b; /* set border */
-  border-radius: 5px; /* round corners */
-  background-color: #fff0e7; /* set background color */
-}
-
-/* Optional: Style for when the date input field is focused */
-
-input[type="date"]:focus {
-  border-color: #eb4d3b; /* change border color on focus */
-  /* change background color on focus */
-}
-
-/* Optional: Style for the date input field's arrow */
-/* input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-} */

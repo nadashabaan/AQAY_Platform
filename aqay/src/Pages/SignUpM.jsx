@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SUM from "../assets/Images/SUM.png";
 function SignUpFormM() {
   const [formData, setFormData] = useState({
     email: "",
@@ -9,14 +10,25 @@ function SignUpFormM() {
     gender: "",
   });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // };
+  // State to store the value of each input field
+  // const [inputValues, setInputValues] = useState({
+  //   company: "",
+  //   individual: "",
+  // });
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setInputValues((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // };
   const handleSubmit = (event) => {
     event.preventDefault();
     // Implement your submission logic here, for example sending the data to an API endpoint
@@ -39,8 +51,9 @@ function SignUpFormM() {
             ever-evolving world of ecommerce. Let's elevate local talent
             together
           </p>
+          <img src={SUM} />
         </div>
-        <div className="right-section">
+        <div className="right-section-M">
           <div className="signup-form">
             <h2>SIGN UP</h2>
             <form>
@@ -56,16 +69,34 @@ function SignUpFormM() {
                 required
               />
               <input
-                type="password"
-                placeholder="Confirm your password"
+                type="tel"
+                maxlength="11"
+                placeholder="Phone number"
                 required
               />
-              <input
-                type="password"
-                placeholder="Confirm your password"
-                required
-              />
-              <label>Gender</label>
+              <label>
+                 Business company 
+                <input
+                  type="tel"
+                  name="company"
+                  placeholder="Tax registration number"
+                  maxLength={9}
+                />
+              </label>
+              <label>
+                Individual Business  
+                <input
+                  type="tel"
+                  name="individual"
+                  placeholder="National ID"
+                  maxLength={14}
+                />
+              </label>
+              <label>
+                <select name="Category" id="Category">
+                  <option value=" ">Category</option>
+                </select>
+              </label>
 
               <Link to="/SignIn">If you already have an account Sign in</Link>
               <button type="submit">SIGN UP</button>

@@ -10,6 +10,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import "./CSS/SignUpC.css";
 import "./CSS/SignUpM.css";
+import "./CSS/SignIn.css";
 import SignUpFormC from "./Pages/SignUpC";
 import SignUpFormM from "./Pages/SignUpM";
 import { SignIn } from "./Pages/SignIn";
@@ -17,7 +18,7 @@ import { SignIn } from "./Pages/SignIn";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route index element={<SignUpFormC />} />
+      <Route path="/SignUpFormC" element={<SignUpFormC />} />
       <Route path="/SignUpM" element={<SignUpFormM />} />
       <Route path="/SignIn" element={<SignIn />} />
     </Route>
@@ -26,5 +27,4 @@ const router = createBrowserRouter(
 const App = () => {
   return <RouterProvider router={router} />;
 };
-
 export default App;

@@ -8,6 +8,7 @@
 
 .left-section {
   width: 80%;
+  height: 950px;
   padding: 20px;
   text-align: justify;
 }
@@ -27,26 +28,13 @@
   text-align: left;
 }
 
-.left-section button {
-  background-color: #eb4d3b;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 16px;
-  position: relative;
-  top: 20px;
-  left: 750px;
-}
-
 .left-section button:hover {
   background-color: #b33224;
 }
 
-.right-section {
+.right-section-M {
   width: 40%;
-  height: 500px;
+  height: 650px;
   background-color: #f7a96f;
   display: flex;
   flex-direction: column;
@@ -58,24 +46,28 @@
 .signup-form {
   width: 100%;
   max-width: 400px;
+  display: inline-block;
 }
 
 .signup-form h2 {
   text-align: center;
   font-weight: bold;
   color: #000;
-  margin-bottom: 20px;
+  margin-top: 30px;
   font-size: 33px;
 }
 
 .signup-form input[type="email"],
 .signup-form input[type="password"],
+.signup-form input[type="number"],
+.signup-form input[type="tel"],
 .signup-form select {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #fff0e7;
 }
 
 .signup-form .date-of-birth select {
@@ -104,7 +96,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .signup-form button:hover {
@@ -116,7 +108,7 @@
   text-decoration: none;
   display: block;
   text-align: left;
-  margin-top: 25px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
