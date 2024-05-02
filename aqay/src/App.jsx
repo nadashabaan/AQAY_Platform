@@ -18,9 +18,10 @@ import { SignIn } from "./Pages/SignIn";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/SignUpFormC" element={<SignUpFormC />} />
+      <Route path="/" element={<SignUpFormC />} />
       <Route path="/SignUpM" element={<SignUpFormM />} />
       <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/SignUpFormC" element={<SignUpFormC />} />
     </Route>
   )
 );
