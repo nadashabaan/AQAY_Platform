@@ -14,6 +14,7 @@ import "./CSS/SignIn.css";
 import SignUpFormC from "./Pages/SignUpC";
 import SignUpFormM from "./Pages/SignUpM";
 import { SignIn } from "./Pages/SignIn";
+import Home from "./Pages/Home";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/SignUpM" element={<SignUpFormM />} />
       <Route path="/SignIn" element={<SignIn />} />
       <Route path="/SignUpFormC" element={<SignUpFormC />} />
+      <Route path="/Home" element={<Home />} />
     </Route>
   )
 );

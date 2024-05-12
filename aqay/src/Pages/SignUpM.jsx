@@ -70,6 +70,7 @@ function SignUpFormM() {
               />
               <input
                 type="tel"
+                minlength="11"
                 maxlength="11"
                 placeholder="Phone number"
                 required
@@ -81,6 +82,7 @@ function SignUpFormM() {
                   name="company"
                   placeholder="Tax registration number"
                   maxLength={9}
+                  minlength="9"
                 />
               </label>
               <label>
@@ -90,6 +92,7 @@ function SignUpFormM() {
                   name="individual"
                   placeholder="National ID"
                   maxLength={14}
+                  minlength="14"
                 />
               </label>
               <label>
