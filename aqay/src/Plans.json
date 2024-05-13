@@ -1,0 +1,28 @@
+{
+  "plans": [
+    {
+      "id": "1",
+      "type": "Annual subscription",
+      "description": "With our Annual Subscription plan, merchants gain full access to our e-commerce platform for a whole year. This plan offers the convenience of a single payment for 12 months of service, ensuring uninterrupted access to our suite of tools and features. Benefits: - Cost-Effective: Save more with a yearly subscription compared to monthly payments. - Consistency: Enjoy stable pricing for a year, regardless of any price changes. - Full Access: Access all features and updates throughout the subscription period. - Priority Support: Get priority assistance from our dedicated support team.",
+      "price": "E£3600"
+    },
+    {
+      "id": "2",
+      "type": "Semi-annual subscription",
+      "description": "Our Semi-Annual Subscription plan offers a longer commitment period with the flexibility of a half-year term. Pay for six months upfront and unlock exclusive benefits while utilizing our e-commerce platform. Benefits: - Significant Savings: Enjoy substantial discounts compared to monthly subscriptions. - Extended Commitment: Commit for six months with the option to renew. - Stability: Stable pricing for six months, providing predictability for your budget. - Priority Support: Get priority assistance from our support team.",
+      "price": "E£2400"
+    },
+    {
+      "id": "3",
+      "type": "Quarterly subscription",
+      "description": "Our Quarterly Subscription plan provides merchants with a balance between commitment and flexibility. Pay for three months at a time and enjoy access to our e-commerce platform along with the benefits of longer subscriptions. Benefits: - Cost Savings: Enjoy discounted rates compared to monthly subscriptions. - Moderate Commitment: Commit to three months at a time with the option to renew. - Stability: Stable pricing for three months, regardless of any price changes. - Full Access: Access all features and updates during the subscription period.",
+      "price": "E£1500"
+    },
+    {
+      "id": "4",
+      "type": "Monthly subscription",
+      "description": "Our Monthly Subscription plan offers the flexibility of paying on a monthly basis, allowing merchants to use our e-commerce platform without a long-term commitment. Benefits: - Flexibility: Pay month-to-month with no long-term commitment. - Affordable Start: Start using our platform with a low monthly fee. - Scalability: Easily upgrade, downgrade, or cancel your subscription as your business needs evolve. - Full Access: Access all features and updates as long as the subscription is active.",
+      "price": "E£600"
+    }
+  ]
+}

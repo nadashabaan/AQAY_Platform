@@ -22,6 +22,7 @@ import PersonalInfo from "./Pages/PersonalInfo";
 import Reset from "./Pages/Reset";
 import StoreFront from "./Pages/StoreFront";
 import ViewBrand from "./Pages/ViewBrand";
+import Subscriptions from "./Pages/Subscriptions";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/Reset" element={<Reset />} />
         <Route path="/storeFront" element={<StoreFront />} />
         <Route path="/view" element={<ViewBrand />} />
+        <Route path="/subscriptions" element={<Subscriptions />} />
       </Route>
     )
   );
