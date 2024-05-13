@@ -33,8 +33,8 @@
 }
 
 .right-section-M {
-  width: 40%;
-  height: 650px;
+  width: 35%;
+  height: 790px;
   background-color: #f7a96f;
   display: flex;
   flex-direction: column;
@@ -61,10 +61,12 @@
 .signup-form input[type="password"],
 .signup-form input[type="number"],
 .signup-form input[type="tel"],
+.signup-form input[type="text"],
 .signup-form select {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
+  margin-top: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #fff0e7;

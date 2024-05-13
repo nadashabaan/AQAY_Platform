@@ -24,9 +24,11 @@ export const SignIn = () => {
                 placeholder="Enter your password"
                 required
               />
+              <Link to="/Reset">forget password </Link>
               <Link to="/SignUpFormC">
                 If you don't have an account Sign up{" "}
               </Link>
+
               <button type="submit">SIGN IN</button>
             </form>
           </div>
