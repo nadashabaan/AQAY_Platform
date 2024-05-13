@@ -10,19 +10,20 @@ import {
 import logo from "../assets/Images/logo.png";
 
 const Navbar = () => {
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   const linkClass = ({ isActive }) =>
     isActive
       ? "bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-      : "text-white hover:bg-orange-700 hover:text-white rounded-md px-3 py-2";
+      : "text-white  hover:bg-orange-200 hover:text-white rounded-md px-3 py-2";
+
+  const iconStyle = { color: "black" };
 
   return (
     <>
       <nav className="bg-orange-100 border-b border-orange-500">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex h-20 items-center justify-between">
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
-            {/* <!-- Logo --> */}
             <NavLink className="flex flex-shrink-0 items-center mr-4" to="/">
               <img className="h-10 w-auto" src={logo} alt="React Jobs" />
               <span className="hidden md:block text-orange-600 text-2xl font-red-rose ml-2 ">
@@ -30,7 +31,7 @@ const Navbar = () => {
               </span>
             </NavLink>
           </div>
-          {/* Search Input */}
+
           <div className="flex flex-1 items-center justify-center">
             <div className="relative">
               <input
@@ -42,24 +43,23 @@ const Navbar = () => {
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <RiSearchLine className="h-5 w-5 text-gray-400" />{" "}
-                {/* Use the search icon */}
               </div>
             </div>
           </div>
-          {/* End of Search Input */}
+
           <div className="md:ml-auto">
             <div className="flex space-x-2">
               <NavLink to="/PersonalInfo" className={linkClass}>
-                <RiUserLine className="h-6 w-6" />
+                <RiUserLine className="h-6 w-6" style={iconStyle} />
               </NavLink>
               <NavLink to="/Cart" className={linkClass}>
-                <RiShoppingCartLine className="h-6 w-6" />
+                <RiShoppingCartLine className="h-6 w-6" style={iconStyle} />
               </NavLink>
               <NavLink to="/WishList" className={linkClass}>
-                <RiHeartLine className="h-6 w-6" />
+                <RiHeartLine className="h-6 w-6" style={iconStyle} />
               </NavLink>
               <NavLink to="/Chat" className={linkClass}>
-                <RiChat1Line className="h-6 w-6" />
+                <RiChat1Line className="h-6 w-6" style={iconStyle} />
               </NavLink>
             </div>
           </div>
