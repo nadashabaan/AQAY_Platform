@@ -20,6 +20,8 @@ import WishList from "./Pages/WishList";
 import ChatBot from "./Pages/ChatBot";
 import PersonalInfo from "./Pages/PersonalInfo";
 import Reset from "./Pages/Reset";
+import StoreFront from "./Pages/StoreFront";
+import ViewBrand from "./Pages/ViewBrand";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -35,6 +37,8 @@ const App = () => {
         <Route path="/Chat" element={<ChatBot />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Reset" element={<Reset />} />
+        <Route path="/storeFront" element={<StoreFront />} />
+        <Route path="/view" element={<ViewBrand />} />
       </Route>
     )
   );
