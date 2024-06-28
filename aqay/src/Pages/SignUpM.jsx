@@ -97,12 +97,6 @@ function SignUpFormM() {
                   minlength="14"
                 />
               </label>
-              <label>
-                <select name="Category" id="Category">
-                  <option value=" ">Category</option>
-                </select>
-              </label>
-
               <Link to="/SignIn">If you already have an account Sign in</Link>
               <button type="submit">SIGN UP</button>
             </form>

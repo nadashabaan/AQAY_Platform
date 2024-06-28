@@ -16,6 +16,7 @@ import SignUpFormM from "./Pages/SignUpM";
 import { SignIn } from "./Pages/SignIn";
 import Home from "./Pages/Home";
 import Cart from "./Pages/Cart";
+import ProudctDetails from "./Pages/ProudctDetails";
 import WishList from "./Pages/WishList";
 import ChatBot from "./Pages/ChatBot";
 import PersonalInfo from "./Pages/PersonalInfo";
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/storeFront" element={<StoreFront />} />
         <Route path="/view" element={<ViewBrand />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
+        <Route path="/proudDetails" element={<ProudctDetails />} />
       </Route>
     )
   );
