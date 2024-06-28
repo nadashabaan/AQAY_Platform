@@ -24,6 +24,20 @@ import Reset from "./Pages/Reset";
 import StoreFront from "./Pages/StoreFront";
 import ViewBrand from "./Pages/ViewBrand";
 import Subscriptions from "./Pages/Subscriptions";
+import DashboardM from "./Pages/DashboardM";
+import DashboardA from "./Pages/DashboardA";
+import BaseLayout from "./layoutD/BaseLayout";
+import BaseLayoutA from "./layoutD/BaseLayoutA";
+import SubscriptionRequests from "./Pages/SubscriptionRequests";
+import ManageAccounts from "./Pages/ManageAccounts";
+
+import PageNotFound from "./Pages/PageNotFound";
+import Reports from "./Pages/Reports";
+import Orders from "./Pages/Orders";
+import AddProduct from "./Pages/AddProduct";
+import AddProductVariations from "./Pages/AddProductVariations";
+import RequestsRE from "./Pages/RequestsRE";
+import ManageCategories from "./Pages/ManageCategories";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -39,8 +53,8 @@ const App = () => {
         <Route path="/Chat" element={<ChatBot />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Reset" element={<Reset />} />
-        <Route path="/storeFront" element={<StoreFront />} />
         <Route path="/view" element={<ViewBrand />} />
+        <Route path="*" element={<PageNotFound />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/proudDetails" element={<ProudctDetails />} />
       </Route>
