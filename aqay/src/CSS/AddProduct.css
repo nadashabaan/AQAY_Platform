@@ -1,0 +1,139 @@
+.add-product-container {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: var(--light-shadow1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.add-product-title {
+  color: var(--xl-text-color);
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-product-form label {
+  color: var(--lg-text-color);
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.add-product-form input,
+.add-product-form select,
+.add-product-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 195, 142, 0.882);
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.add-product-form textarea {
+  resize: vertical;
+}
+
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px dashed var(--border-color);
+  border-radius: 5px;
+  background-color: var(--input-background-color);
+  text-align: center;
+  cursor: pointer;
+}
+
+.dropzone p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.upload-icon {
+  margin-bottom: 10px;
+  margin-left: 70px;
+}
+
+.browse-link {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.uploaded-image-container {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+
+.uploaded-image {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 5px;
+}
+
+.remove-icon {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: rgba(227, 127, 38, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  color: black;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-btn {
+  background-color: #f44336;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  flex: 1;
+  margin: 0 5px;
+}
+
+.product-btn:hover {
+  background-color: #d32f2f;
+}
+
+.discard-btn {
+  background-color: #cccccc;
+}
+
+.discard-btn:hover {
+  background-color: #999999;
+}
+
+.theme-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: var(--light-shadow1);
+}
+
+.theme-icon {
+  font-size: 24px;
+  color: var(--xl-text-color);
+}

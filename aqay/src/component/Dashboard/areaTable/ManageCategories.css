@@ -1,0 +1,208 @@
+.content-area-table {
+  background: var(--secondary-color);
+  border-radius: 5px;
+  box-shadow: var(--light-shadow1);
+  padding: 12px 16px;
+}
+
+@media (max-width: 768px) {
+  .content-area-table {
+    padding: 12px;
+  }
+}
+
+.content-area-table .data-table-title {
+  font-size: 18px;
+  color: var(--xl-text-color);
+  margin-bottom: 12px;
+  text-align: center; /* Center the title */
+}
+
+.data-table-diagram {
+  border-radius: 6px;
+  border: 1px solid var(--tbl-border-color) !important;
+  overflow-x: scroll;
+  margin-top: 20px; /* Add margin to space out the elements */
+}
+
+.data-table-diagram table {
+  min-width: 900px;
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-color-inverted);
+}
+
+.data-table-diagram th,
+.data-table-diagram td {
+  padding: 14px 12px;
+}
+
+.data-table-diagram th {
+  background-color: rgba(255, 147, 55, 0.7);
+}
+
+.data-table-diagram th:last-child,
+.data-table-diagram td:last-child {
+  text-align: center;
+}
+
+.data-table-diagram td {
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 165, 0, 0.7);
+  background-color: rgba(255, 147, 55, 0.7);
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.search-container .search-btn {
+  padding: 6px 12px;
+  background-color: #ff9337;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.search-container .retrieve-btn {
+  padding: 6px 12px;
+  background-color: #ff9337;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-color-inverted);
+  margin-left: 10px;
+}
+
+.add-category-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.add-category-container input {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 165, 0, 0.7);
+  background-color: rgba(255, 147, 55, 0.7);
+  color: white;
+  font-size: 16px;
+  width: calc(100% - 110px);
+  margin-right: 10px;
+}
+
+.add-category-container .add-btn {
+  padding: 6px 12px;
+  background-color: #ff9337;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-color-inverted);
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  position: relative;
+  background-color: rgba(255, 147, 55, 0.7);
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.popup-text {
+  background-color: rgba(250, 168, 97, 0.701);
+  padding: 20px;
+  border-radius: 5px;
+  color: var(--text-color-inverted);
+  margin: 0 auto;
+  width: auto;
+}
+
+.editable-textarea {
+  width: 100%;
+  min-height: 100px;
+  background-color: rgba(253, 191, 136, 0.7);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--text-color-inverted);
+  font-size: 16px;
+  margin-top: 10px;
+  resize: vertical;
+}
+
+.action-label {
+  display: block;
+  text-align: left;
+  margin-top: 20px;
+  font-weight: bold;
+  color: var(--text-color-inverted);
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color-inverted);
+}
+
+.content-area-table table th,
+.content-area-table table td {
+  padding: 10px;
+  text-align: center; /* Center text and icons in the table cells */
+}
+
+.content-area-table th {
+  background-color: #ff9e3ea8;
+  color: none;
+}
+
+.content-area-table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.content-area-table td {
+  vertical-align: middle; /* Ensures vertical centering */
+}
+
+.content-area-table td .icon-container {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  align-items: center; /* Center the icons vertically */
+}
