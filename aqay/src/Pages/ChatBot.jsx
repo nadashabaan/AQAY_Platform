@@ -4,6 +4,7 @@ import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
 import SideBar from "../component/SideBar";
 =======
+
 import React, { useState } from "react";
 import { BsRobot } from "react-icons/bs";
 import { RiUserSearchLine } from "react-icons/ri";
@@ -12,6 +13,7 @@ import "../CSS/ChatBot.css";
 import Navbar from "../component/Navbar";
 
 >>>>>>> Stashed changes
+
 const ChatBot = () => {
   const [messages, setMessages] = useState([
     { text: "Hello , How can I help you today Amira!", sender: "bot" },
@@ -79,6 +81,7 @@ const ChatBot = () => {
         </div>
       </div>
 >>>>>>> Stashed changes
+
     </>
   );
 };
