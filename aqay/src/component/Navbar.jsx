@@ -96,7 +96,7 @@ const Navbar = () => {
   const iconStyle = { color: "black" };
 
   return (
-    <nav className="bg-orange-100 border-b border-orange-500 fixed top-0 left-0 right-0  z-50 ">
+    <nav className="bg-orange-100 border-b border-orange-500  fixed top-0 left-0 right-0  z-50">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex h-20 items-center justify-between">
         <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
           <NavLink className="flex flex-shrink-0 items-center mr-4" to="/home">

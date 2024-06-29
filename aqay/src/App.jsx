@@ -57,6 +57,22 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/proudDetails" element={<ProudctDetails />} />
+        <Route element={<BaseLayout />}>
+          <Route path="/DashboardM" element={<DashboardM />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/storeFront" element={<StoreFront />} />
+          <Route path="/addProuduct" element={<AddProduct />} />
+          <Route path="/addProductvar" element={<AddProductVariations />} />
+          <Route path="/Requests" element={<RequestsRE />} />
+        </Route>
+        <Route element={<BaseLayoutA />}>
+          <Route path="/DashboardA" element={<DashboardA />} />
+          <Route path="/SubReq" element={<SubscriptionRequests />} />
+          <Route path="/ManageAcc" element={<ManageAccounts />} />
+          <Route path="/Reports" element={<Reports />} />
+          <Route path="/manageCat" element={<ManageCategories />} />
+          {/* <Route path="/editProduct" element={<EditProduct />} /> */}
+        </Route>
       </Route>
     )
   );

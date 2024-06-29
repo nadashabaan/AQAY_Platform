@@ -314,15 +314,9 @@ function PersonalInfo() {
                 >
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
-                  <option value="Other">Other</option>
                 </select>
               </div>
-              <div className="mb-4 flex justify-between items-center">
-                <label className="block text-gray-700 font-bold">Balance</label>
-                <div className="text-gray-900 font-bold">
-                  {formData.balance}
-                </div>
-              </div>
+              <div className="mb-4 flex justify-between items-center" />
               <div className="flex justify-between">
                 <button
                   type="button"
