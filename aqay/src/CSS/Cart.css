@@ -1,0 +1,80 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.content-area-table {
+  background: var(--secondary-color);
+  border-radius: 5px;
+  box-shadow: var(--light-shadow1);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.data-table-diagram {
+  border-radius: 6px;
+  border: 1px solid var(--tbl-border-color) !important;
+  overflow-x: auto;
+}
+
+.data-table-diagram table {
+  min-width: 900px;
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-color-inverted);
+}
+
+.data-table-diagram th,
+.data-table-diagram td {
+  padding: 14px 12px;
+}
+
+.data-table-diagram th {
+  text-align: center;
+  background-color: var(--thead-bg-color);
+}
+
+.data-table-diagram td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.data-table-diagram th:last-child,
+.data-table-diagram td:last-child {
+  text-align: center;
+}
+
+.data-table-diagram .dt-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 6px;
+}
+
+.data-table-diagram .dt-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+}
+
+.data-table-diagram .dt-status-text {
+  text-transform: capitalize;
+}
+
+.data-table-diagram .dt-status-dot.dot-pending {
+  background-color: var(--orange-color);
+}
+
+.data-table-diagram .dt-status-dot.dot-canceled {
+  background-color: var(--red-color);
+}
+
+.data-table-diagram .dt-status-dot.dot-delivered {
+  background-color: var(--green-color);
+}
+
+.data-table-diagram .dt-status-dot.dot-requested {
+  background-color: gray;
+}

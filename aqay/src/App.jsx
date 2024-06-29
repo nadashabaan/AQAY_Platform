@@ -30,7 +30,7 @@ import BaseLayout from "./layoutD/BaseLayout";
 import BaseLayoutA from "./layoutD/BaseLayoutA";
 import SubscriptionRequests from "./Pages/SubscriptionRequests";
 import ManageAccounts from "./Pages/ManageAccounts";
-
+import BrandDetail from "./Pages/BrandDetail";
 import PageNotFound from "./Pages/PageNotFound";
 import Reports from "./Pages/Reports";
 import Orders from "./Pages/Orders";
@@ -42,6 +42,7 @@ import EditProduct from "./Pages/EditProduct";
 import MerchantProfile from "./Pages/MerchantProfile";
 import SubscriptionPayment from "./Pages/SubscriptionPayment";
 import WishlistProducts from "./Pages/WishlistProducts";
+import OrderHistory from "./Pages/OrderHistory";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -52,7 +53,7 @@ const App = () => {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUpFormC" element={<SignUpFormC />} />
         <Route path="/Cart" element={<Cart />} />
-
+        <Route path="/BrandDetail" element={<BrandDetail />} />
         <Route path="/WishList" element={<WishlistProducts />} />
         <Route path="/PersonalInfo" element={<PersonalInfo />} />
         <Route path="/Chat" element={<ChatBot />} />
@@ -63,7 +64,7 @@ const App = () => {
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/proudDetails" element={<ProudctDetails />} />
         <Route path="/subscriptionPayment" element={<SubscriptionPayment />} />
-
+        <Route path="/OrderHistory" element={<OrderHistory />} />
         <Route element={<BaseLayout />}>
           <Route path="/DashboardM" element={<DashboardM />} />
           <Route path="/orders" element={<Orders />} />

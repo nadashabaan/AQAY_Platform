@@ -1,6 +1,5 @@
 import React from "react";
 import Navbar from "../component/Navbar";
-import SideBar from "../component/SideBar";
 import Footer from "../component/Footer";
 import ProductH from "../component/ProductH";
 import heroH from "../assets/Images/heroH.png";
@@ -13,7 +12,6 @@ const Home = () => {
       </div>
 
       <ProductH />
-      <SideBar />
       <Footer />
     </>
   );

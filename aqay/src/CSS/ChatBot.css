@@ -4,7 +4,7 @@
   justify-content: space-between;
   height: 100vh;
   padding: 20px;
-  background-color: #fee2cc;
+  background-color: #fff0e7;
   font-family: Arial, sans-serif;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .bot .message-bubble {
-  background-color: #ff9e3ea8;
+  background-color: #f78819ca;
   color: white;
   border-radius: 15px 15px 15px 0;
 }

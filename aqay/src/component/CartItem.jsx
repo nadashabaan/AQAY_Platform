@@ -1,32 +1,39 @@
 import React from "react";
-import { MdDeleteOutline } from "react-icons/md";
+import { FaTrashAlt } from "react-icons/fa";
 const CartItem = ({ item, onQuantityChange, onRemoveItem }) => {
-  const { id, image, color, size, quantity, price, total } = item;
-
+  const handleQuantityChange = (e) => {
+    const newQuantity = parseInt(e.target.value);
+    if (newQuantity >= 0) {
+      onQuantityChange(item.id, newQuantity);
+    }
+  };
   return (
-    <tr className="border-t border-gray-200">
+    <tr>
       <td className="p-4">
-        <img src={image} alt="Product" className="w-20 h-20 object-cover" />
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-20 h-20 object-cover"
+        />
       </td>
-      <td className="p-4">{color}</td>
-      <td className="p-4">{size}</td>
+      <td className="p-4">{item.color}</td>
+      <td className="p-4">{item.size}</td>
       <td className="p-4">
         <input
           type="number"
-          min="1"
-          value={quantity}
-          onChange={(e) => onQuantityChange(id, Number(e.target.value))}
-          className="w-16 border border-gray-300 rounded p-1"
+          value={item.quantity}
+          onChange={handleQuantityChange}
+          className="w-12 text-center border border-gray-300 rounded"
         />
       </td>
-      <td className="p-4">${price}</td>
-      <td className="p-4">${total}</td>
+      <td className="p-4">${item.price}</td>
+      <td className="p-4">${item.total}</td>
       <td className="p-4">
         <button
-          onClick={() => onRemoveItem(id)}
-          className="bg-gray-200 text-black px-4 py-2 rounded"
+          onClick={() => onRemoveItem(item.id)}
+          className="text-gray-500 hover:text-black-700"
         >
-          <MdDeleteOutline />
+          <FaTrashAlt />
         </button>
       </td>
     </tr>

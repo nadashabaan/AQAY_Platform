@@ -76,7 +76,7 @@
 .content-area-table .data-table-diagram table .dt-status {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   column-gap: 6px;
 }
 
@@ -108,6 +108,14 @@
   .dt-status
   .dt-status-dot.dot-delivered {
   background-color: var(--green-color);
+}
+
+.content-area-table
+  .data-table-diagram
+  table
+  .dt-status
+  .dt-status-dot.dot-requested {
+  background-color: gray;
 }
 
 .content-area-table .data-table-diagram table .dt-status .dt-status-text {

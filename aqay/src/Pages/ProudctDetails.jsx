@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../component/Navbar";
-import SideBar from "../component/SideBar";
-import PersonalInfo from "../component/SideBar";
+import PersonalInfo from "./PersonalInfo";
 import ProductImage from "../component/ProductImage";
 import RelatedProducts from "../component/RelatedProducts";
 import ProductDetail from "../component/ProductDetail";
@@ -13,7 +12,6 @@ const ProudctDetails = () => {
     <div>
       <>
         <Navbar />
-        <SideBar />
         <PersonalInfo />
         <ProductDetail />
         <ProductImage />

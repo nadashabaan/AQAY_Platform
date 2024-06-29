@@ -1,13 +1,13 @@
-import image from "../assets/Images/image.png";
 import React from "react";
-import { FaHeart, FaExpandAlt, FaShoppingCart } from "react-icons/fa";
+import { FaExpandAlt, FaShoppingCart } from "react-icons/fa";
 import "../CSS/WishlistProduct.css";
+import { CiHeart } from "react-icons/ci";
 
-const WishlistProduct = ({ product, onRemove, onExpand, onAddToCart }) => {
+const ProductB = ({ product, onRemove, onExpand, onAddToCart }) => {
   return (
     <div className="wishlist-product">
       <div className="product-image">
-        <img src={image} alt={product.name} />
+        <img src={product.image} alt={product.name} />
       </div>
       <div className="product-details">
         <div className="product-category">{product.category}</div>
@@ -27,7 +27,7 @@ const WishlistProduct = ({ product, onRemove, onExpand, onAddToCart }) => {
             className="action-button wishlist-button"
             onClick={() => onRemove(product.id)}
           >
-            <FaHeart />
+            <CiHeart className="text-3xl" />
           </button>
           <button
             className="action-button expand-button"
@@ -48,4 +48,4 @@ const WishlistProduct = ({ product, onRemove, onExpand, onAddToCart }) => {
   );
 };
 
-export default WishlistProduct;
+export default ProductB;

@@ -1,17 +1,9 @@
-<<<<<<< Updated upstream
-import React from "react";
-import Footer from "../component/Footer";
-import Navbar from "../component/Navbar";
-import SideBar from "../component/SideBar";
-=======
 import React, { useState } from "react";
 import { BsRobot } from "react-icons/bs";
 import { RiUserSearchLine } from "react-icons/ri";
-import { AiOutlineSend } from "react-icons/ai";
 import "../CSS/ChatBot.css";
 import Navbar from "../component/Navbar";
 
->>>>>>> Stashed changes
 const ChatBot = () => {
   const [messages, setMessages] = useState([
     { text: "Hello , How can I help you today Amira!", sender: "bot" },
@@ -38,12 +30,6 @@ const ChatBot = () => {
 
   return (
     <>
-<<<<<<< Updated upstream
-      <Navbar></Navbar>
-      <div>ChatBot</div>
-      <SideBar />
-      <Footer />
-=======
       <Navbar />
       <div className="chat-container">
         <div className="chat-header">
@@ -74,11 +60,10 @@ const ChatBot = () => {
             onChange={(e) => setInput(e.target.value)}
           />
           <button className="send-button" onClick={handleSend}>
-            <AiOutlineSend />
+            ➤
           </button>
         </div>
       </div>
->>>>>>> Stashed changes
     </>
   );
 };
