@@ -5,7 +5,6 @@ const TABLE_HEADS = [
   "Brand Name",
   "Brand Email",
   "Phone Number",
-  "Customer name",
   "Tax Registration Number",
   "National ID",
   "Action",
@@ -13,58 +12,52 @@ const TABLE_HEADS = [
 
 const TABLE_DATA = [
   {
-    id: 100,
-    name: "Iphone 13 Pro",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 400,
+    id: 1,
+    brandName: "FashionCo",
+    brandEmail: "info@fashionco.com",
+    phoneNumber: "+1-202-555-0143",
+    taxRegistrationNumber: "TRN-123456789",
+    nationalId: "NID-987654321",
   },
   {
-    id: 101,
-    name: "Macbook Pro",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "pending",
-    amount: 288,
+    id: 2,
+    brandName: "TechieGear",
+    brandEmail: "support@techiegear.com",
+    phoneNumber: "+1-202-555-0153",
+    taxRegistrationNumber: "TRN-234567890",
+    nationalId: "NID-876543210",
   },
   {
-    id: 102,
-    name: "Apple Watch",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "canceled",
-    amount: 500,
+    id: 3,
+    brandName: "HomeDecor",
+    brandEmail: "contact@homedecor.com",
+    phoneNumber: "+1-202-555-0163",
+    taxRegistrationNumber: "TRN-345678901",
+    nationalId: "NID-765432109",
   },
   {
-    id: 103,
-    name: "Microsoft Book",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 100,
+    id: 4,
+    brandName: "KitchenPlus",
+    brandEmail: "sales@kitchenplus.com",
+    phoneNumber: "+1-202-555-0173",
+    taxRegistrationNumber: "TRN-456789012",
+    nationalId: "NID-654321098",
   },
   {
-    id: 104,
-    name: "Apple Pen",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 60,
+    id: 5,
+    brandName: "OutdoorLife",
+    brandEmail: "hello@outdoorlife.com",
+    phoneNumber: "+1-202-555-0183",
+    taxRegistrationNumber: "TRN-567890123",
+    nationalId: "NID-543210987",
   },
   {
-    id: 105,
-    name: "Airpods",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 80,
+    id: 6,
+    brandName: "GadgetWorld",
+    brandEmail: "info@gadgetworld.com",
+    phoneNumber: "+1-202-555-0193",
+    taxRegistrationNumber: "TRN-678901234",
+    nationalId: "NID-432109876",
   },
 ];
 
@@ -87,19 +80,11 @@ const SubscriptionRequestsTable = () => {
             {TABLE_DATA?.map((dataItem) => {
               return (
                 <tr key={dataItem.id}>
-                  <td>{dataItem.name}</td>
-                  <td>{dataItem.order_id}</td>
-                  <td>{dataItem.date}</td>
-                  <td>{dataItem.customer}</td>
-                  <td>
-                    <div className="dt-status">
-                      <span
-                        className={`dt-status-dot dot-${dataItem.status}`}
-                      ></span>
-                      <span className="dt-status-text">{dataItem.status}</span>
-                    </div>
-                  </td>
-                  <td>${dataItem.amount.toFixed(2)}</td>
+                  <td>{dataItem.brandName}</td>
+                  <td>{dataItem.brandEmail}</td>
+                  <td>{dataItem.phoneNumber}</td>
+                  <td>{dataItem.taxRegistrationNumber}</td>
+                  <td>{dataItem.nationalId}</td>
                   <td className="dt-cell-action">
                     <SubscriptionRequestsAction />
                   </td>

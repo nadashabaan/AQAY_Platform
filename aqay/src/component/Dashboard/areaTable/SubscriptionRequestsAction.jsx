@@ -36,11 +36,6 @@ const SubscriptionRequestsAction = () => {
             <ul className="dropdown-menu-list">
               <li className="dropdown-menu-item">
                 <Link to="/view" className="dropdown-menu-link">
-                  View
-                </Link>
-              </li>
-              <li className="dropdown-menu-item">
-                <Link to="/view" className="dropdown-menu-link">
                   Accept
                 </Link>
               </li>

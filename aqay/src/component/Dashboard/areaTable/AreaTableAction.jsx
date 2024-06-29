@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
-const AreaTableAction = () => {
+const AreaTableAction = ({ currentStatus, onStatusChange }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const handleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -19,9 +19,16 @@ const AreaTableAction = () => {
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const statusOptions = ["processing", "pending", "delivered", "shipped"];
+
+  const getNextStatus = () => {
+    const currentIndex = statusOptions.indexOf(currentStatus);
+    return statusOptions[(currentIndex + 1) % statusOptions.length];
+  };
 
   return (
     <>
@@ -34,20 +41,14 @@ const AreaTableAction = () => {
         {showDropdown && (
           <div className="action-dropdown-menu" ref={dropdownRef}>
             <ul className="dropdown-menu-list">
-              <li className="dropdown-menu-item">
-                <Link to="/view" className="dropdown-menu-link">
-                  View
-                </Link>
-              </li>
-              <li className="dropdown-menu-item">
-                <Link to="/view" className="dropdown-menu-link">
-                  Edit
-                </Link>
-              </li>
-              <li className="dropdown-menu-item">
-                <Link to="/view" className="dropdown-menu-link">
-                  Delete
-                </Link>
+              <li
+                className="dropdown-menu-item"
+                onClick={() => {
+                  onStatusChange(getNextStatus());
+                  setShowDropdown(false);
+                }}
+              >
+                <span className="dropdown-menu-link">Next Status</span>
               </li>
             </ul>
           </div>
