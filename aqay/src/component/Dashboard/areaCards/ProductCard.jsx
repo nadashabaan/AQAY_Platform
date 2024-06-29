@@ -27,7 +27,9 @@ const ProductCard = ({ product }) => {
         <button className="product-btn">
           <Link to="/addProductvar">Add Product Variations</Link>
         </button>
-        <button className="product-btn">Edit</button>
+        <button className="product-btn">
+          <Link to="/editProduct">Edit</Link>
+        </button>
         <button className="product-btn">Remove</button>
       </div>
     </div>

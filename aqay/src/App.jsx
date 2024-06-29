@@ -38,6 +38,10 @@ import AddProduct from "./Pages/AddProduct";
 import AddProductVariations from "./Pages/AddProductVariations";
 import RequestsRE from "./Pages/RequestsRE";
 import ManageCategories from "./Pages/ManageCategories";
+import EditProduct from "./Pages/EditProduct";
+import MerchantProfile from "./Pages/MerchantProfile";
+import SubscriptionPayment from "./Pages/SubscriptionPayment";
+import WishlistProducts from "./Pages/WishlistProducts";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -48,7 +52,8 @@ const App = () => {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUpFormC" element={<SignUpFormC />} />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/WishList" element={<WishList />} />
+
+        <Route path="/WishList" element={<WishlistProducts />} />
         <Route path="/PersonalInfo" element={<PersonalInfo />} />
         <Route path="/Chat" element={<ChatBot />} />
         <Route path="/Home" element={<Home />} />
@@ -57,6 +62,8 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/proudDetails" element={<ProudctDetails />} />
+        <Route path="/subscriptionPayment" element={<SubscriptionPayment />} />
+
         <Route element={<BaseLayout />}>
           <Route path="/DashboardM" element={<DashboardM />} />
           <Route path="/orders" element={<Orders />} />
@@ -64,6 +71,8 @@ const App = () => {
           <Route path="/addProuduct" element={<AddProduct />} />
           <Route path="/addProductvar" element={<AddProductVariations />} />
           <Route path="/Requests" element={<RequestsRE />} />
+          <Route path="/editProduct" element={<EditProduct />} />
+          <Route path="/merchantProfile" element={<MerchantProfile />} />
         </Route>
         <Route element={<BaseLayoutA />}>
           <Route path="/DashboardA" element={<DashboardA />} />

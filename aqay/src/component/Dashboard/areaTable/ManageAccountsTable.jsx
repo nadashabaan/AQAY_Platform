@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import ManageAccountsTableAction from "./ManageAccountsTableAction";
 import "./AreaTable.css";
+import { LiaToggleOffSolid, LiaToggleOnSolid } from "react-icons/lia";
 
 const TABLE_HEADS = [
   "User Name",
   "User Email",
   "Phone Number",
   "Type",
+  "Status",
   "Action",
 ];
 
@@ -17,6 +18,7 @@ const TABLE_DATA = [
     email: "nada123@gmail.com",
     phone: 201077777777,
     type: "buyer",
+    status: "Deactivated",
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ const TABLE_DATA = [
     email: "nada123@gmail.com",
     phone: 201077777777,
     type: "buyer",
+    status: "Deactivated",
   },
   {
     id: 3,
@@ -31,6 +34,7 @@ const TABLE_DATA = [
     email: "CoCo123@gmail.com",
     phone: 2010888888888,
     type: "merchant",
+    status: "Active",
   },
   {
     id: 4,
@@ -38,6 +42,7 @@ const TABLE_DATA = [
     email: "nada123@gmail.com",
     phone: 201077777777,
     type: "buyer",
+    status: "Deactivated",
   },
   {
     id: 5,
@@ -45,6 +50,7 @@ const TABLE_DATA = [
     email: "CoCo123@gmail.com",
     phone: 2010888888888,
     type: "merchant",
+    status: "Active",
   },
   {
     id: 6,
@@ -52,11 +58,14 @@ const TABLE_DATA = [
     email: "nada123@gmail.com",
     phone: 201077777777,
     type: "buyer",
+    status: "Active",
   },
 ];
 
 const ManageAccountsTable = () => {
-  const [filter, setFilter] = useState("all");
+  const [filterType, setFilterType] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [tableData, setTableData] = useState(TABLE_DATA);
 
   useEffect(() => {
     const dropdown = document.querySelector(".filter-dropdown");
@@ -72,25 +81,49 @@ const ManageAccountsTable = () => {
     });
   }, []);
 
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
+  const handleFilterTypeChange = (event) => {
+    setFilterType(event.target.value);
   };
 
-  const filteredData =
-    filter === "all"
-      ? TABLE_DATA
-      : TABLE_DATA.filter((item) => item.type === filter);
+  const handleFilterStatusChange = (event) => {
+    setFilterStatus(event.target.value);
+  };
+
+  const handleToggleStatus = (id) => {
+    const updatedData = tableData.map((item) =>
+      item.id === id
+        ? {
+            ...item,
+            status: item.status === "Active" ? "Deactivated" : "Active",
+          }
+        : item
+    );
+    setTableData(updatedData);
+  };
+
+  const filteredData = tableData.filter(
+    (item) =>
+      (filterType === "all" || item.type === filterType) &&
+      (filterStatus === "all" || item.status === filterStatus)
+  );
 
   return (
     <section className="content-area-table">
       <div className="data-table-info">
         <h6 className="data-table-title">Manage Accounts</h6>
-
         <div>
-          <select className="filter-dropdown" onChange={handleFilterChange}>
-            <option value="all">All</option>
-            <option value="buyer">consumer</option>
+          <select className="filter-dropdown" onChange={handleFilterTypeChange}>
+            <option value="all">All Types</option>
+            <option value="buyer">Consumer</option>
             <option value="merchant">Merchant</option>
+          </select>
+          <select
+            className="filter-dropdown"
+            onChange={handleFilterStatusChange}
+          >
+            <option value="all">All Statuses</option>
+            <option value="Active">Active</option>
+            <option value="Deactivated">Deactivated</option>
           </select>
         </div>
       </div>
@@ -98,21 +131,28 @@ const ManageAccountsTable = () => {
         <table>
           <thead>
             <tr>
-              {TABLE_HEADS?.map((th, index) => (
+              {TABLE_HEADS.map((th, index) => (
                 <th key={index}>{th}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {filteredData?.map((dataItem) => {
+            {filteredData.map((dataItem) => {
               return (
                 <tr key={dataItem.id}>
                   <td>{dataItem.name}</td>
                   <td>{dataItem.email}</td>
                   <td>{dataItem.phone}</td>
                   <td>{dataItem.type}</td>
+                  <td>{dataItem.status}</td>
                   <td className="dt-cell-action">
-                    <ManageAccountsTableAction />
+                    <button onClick={() => handleToggleStatus(dataItem.id)}>
+                      {dataItem.status === "Active" ? (
+                        <LiaToggleOnSolid size={24} />
+                      ) : (
+                        <LiaToggleOffSolid size={24} />
+                      )}
+                    </button>
                   </td>
                 </tr>
               );
