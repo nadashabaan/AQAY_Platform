@@ -580,11 +580,11 @@
 }
 
 .menu-link:hover {
-  background-color: #f5b97a; /* Light orange color */
+  background-color: #f5b97a;
 }
 
 .menu-link.active {
-  background-color: #f5b97a; /* Light orange color */
+  background-color: #f5b97a;
   color: var(--light-color);
   box-shadow: 0px 0px 4px rgba(71, 91, 232, 0.04);
 }
@@ -592,7 +592,7 @@
 .menu-link-content {
   display: flex;
   align-items: center;
-  column-gap: 10px; /* Adjust the gap between icon and text as needed */
+  column-gap: 12px; /* Adjust the gap between icon and text as needed */
 }
 
 .menu-link-icon {
@@ -604,6 +604,10 @@
 .menu-link-text {
   display: flex;
   align-items: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--logo-color);
+  margin-bottom: 8px;
 }
 
 @media (max-width: 1200px) {
@@ -637,5 +641,5 @@
 
 .menu-link:hover,
 .menu-link.active {
-  background-color: #f5b97a; /* Light orange color */
+  background-color: #f5b97a;
 }
