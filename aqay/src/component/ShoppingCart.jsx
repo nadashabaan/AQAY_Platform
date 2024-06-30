@@ -253,15 +253,15 @@ const ShoppingCart = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 min-h-screen flex flex-col mt-16">
+    <div className="container-cart mx-auto p-4 min-h-screen flex flex-col mt-16">
       <div className="flex justify-center mb-4">
         <h1 className="text-center text-2xl font-bold text-gray-800">
           Your Shopping Cart has{" "}
           <span className="text-orange-500">{cartItems.length}</span> items
         </h1>
       </div>
-      <div className="content-area-table flex-grow flex justify-center items-center">
-        <div className="data-table-diagram w-full max-w-5xl">
+      <div className="content-cart-table flex-grow flex justify-center items-center">
+        <div className="data-CartTable-diagram w-full max-w-5xl">
           <table className="min-w-full bg-white shadow-lg rounded-lg">
             <thead>
               <tr className="bg-gray-200 text-center text-sm leading-normal text-gray-600">
