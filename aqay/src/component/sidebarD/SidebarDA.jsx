@@ -1,40 +1,33 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import { LIGHT_THEME } from "../../constants/themeConstants";
 import { CiShop } from "react-icons/ci";
 import { LuUserCog2 } from "react-icons/lu";
-
 import {
-  MdDiversity1,
   MdDiversity2,
-  MdOutlineAttachMoney,
   MdOutlineBarChart,
   MdOutlineClose,
-  MdOutlineCurrencyExchange,
   MdOutlineGridView,
   MdOutlineLogout,
   MdOutlineMessage,
-  MdOutlinePeople,
-  MdOutlineSettings,
-  MdOutlineShoppingBag,
 } from "react-icons/md";
 import { TbCategory2 } from "react-icons/tb";
-
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./SidebarD.css";
 import { SidebarContextD } from "../../context/SidebarContextD";
-
+import logo from "../../assets/Images/logo.png";
+import { IoStatsChartOutline } from "react-icons/io5";
 const SidebarDA = () => {
   const { theme } = useContext(ThemeContext);
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContextD);
   const navbarRef = useRef(null);
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState(location.pathname);
 
-  // closing the navbar when clicked outside the sidebar area
   const handleClickOutside = (event) => {
     if (
       navbarRef.current &&
       !navbarRef.current.contains(event.target) &&
-      event.target.className !== "sidebar-oepn-btn"
+      event.target.className !== "sidebar-open-btn"
     ) {
       closeSidebar();
     }
@@ -47,6 +40,10 @@ const SidebarDA = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location]);
+
   return (
     <nav
       className={`sidebar ${isSidebarOpen ? "sidebar-show" : ""}`}
@@ -54,52 +51,73 @@ const SidebarDA = () => {
     >
       <div className="sidebar-top">
         <div className="sidebar-brand">
-          <CiShop size={36} />
-          <span className="sidebar-brand-text">Brandname.</span>
+          <img className="h-10 w-auto" src={logo} alt="Logo" />
+          <span className="sidebar-brand-text">Aqay Administration</span>
         </div>
         <button className="sidebar-close-btn" onClick={closeSidebar}>
           <MdOutlineClose size={24} />
         </button>
       </div>
       <div className="sidebar-body">
+        <div className="menu-link-content">
+          <span className="menu-link-icon">
+            <MdOutlineGridView size={30} />
+          </span>
+          <span className="menu-link-text">Dashboard</span>
+        </div>
+        <br />
         <div className="sidebar-menu">
           <ul className="menu-list">
             <li className="menu-item">
-              <div className="menu-link active">
+              <Link
+                to="/DashboardA"
+                className={`menu-link ${
+                  activeLink === "/DashboardA" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/DashboardA")}
+              >
                 <span className="menu-link-icon">
-                  <MdOutlineGridView size={30} />
-                </span>
-                <span className="sidebar-brand-text">Dashboard</span>
-              </div>
-            </li>
-            <li className="menu-item">
-              <Link to="/DashboardA" className="menu-link">
-                <span className="menu-link-icon">
-                  <MdOutlineBarChart size={24} />
+                  <IoStatsChartOutline size={24} />
                 </span>
                 <span className="menu-link-text">Statistics</span>
               </Link>
             </li>
             <li className="menu-item">
-              <Link to="/SubReq" className="menu-link">
+              <Link
+                to="/SubReq"
+                className={`menu-link ${
+                  activeLink === "/SubReq" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/SubReq")}
+              >
                 <span className="menu-link-icon">
-                  {/* <MdOutlineAttachMoney size={24} /> */}
                   <MdDiversity2 size={24} />
                 </span>
                 <span className="menu-link-text">Subscription Requests</span>
               </Link>
             </li>
             <li className="menu-item">
-              <Link to="/ManageAcc" className="menu-link">
+              <Link
+                to="/ManageAcc"
+                className={`menu-link ${
+                  activeLink === "/ManageAcc" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/ManageAcc")}
+              >
                 <span className="menu-link-icon">
                   <LuUserCog2 size={24} />
                 </span>
                 <span className="menu-link-text">Manage Accounts</span>
               </Link>
             </li>
-
             <li className="menu-item">
-              <Link to="/Reports" className="menu-link">
+              <Link
+                to="/Reports"
+                className={`menu-link ${
+                  activeLink === "/Reports" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/Reports")}
+              >
                 <span className="menu-link-icon">
                   <MdOutlineMessage size={24} />
                 </span>
@@ -107,20 +125,29 @@ const SidebarDA = () => {
               </Link>
             </li>
             <li className="menu-item">
-              <Link to="/manageCat" className="menu-link">
+              <Link
+                to="/manageCat"
+                className={`menu-link ${
+                  activeLink === "/manageCat" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/manageCat")}
+              >
                 <span className="menu-link-icon">
                   <TbCategory2 size={24} />
                 </span>
-                <span className="menu-link-text">Manage Categories </span>
+                <span className="menu-link-text">Manage Categories</span>
               </Link>
             </li>
           </ul>
         </div>
-
         <div className="sidebar-menu sidebar-menu2">
           <ul className="menu-list">
             <li className="menu-item">
-              <Link to="/" className="menu-link">
+              <Link
+                to="/"
+                className={`menu-link ${activeLink === "/" ? "active" : ""}`}
+                onClick={() => setActiveLink("/")}
+              >
                 <span className="menu-link-icon">
                   <MdOutlineLogout size={24} />
                 </span>

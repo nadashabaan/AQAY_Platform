@@ -1,12 +1,11 @@
+import React, { useState, useEffect } from "react";
 import ReportsTableAction from "./ReportsTableAction";
 import "./AreaTable.css";
-import React, { useState } from "react";
 import { LuSend } from "react-icons/lu";
 import { IoEyeOutline } from "react-icons/io5";
 import { LiaToggleOffSolid, LiaToggleOnSolid } from "react-icons/lia";
 
 const TABLE_HEADS = [
-  "User Name",
   "Report Title",
   "Report Details",
   "Status",
@@ -16,78 +15,31 @@ const TABLE_HEADS = [
   "Response",
 ];
 
-const initialTableData = [
-  {
-    id: 100,
-    username: "nada",
-    title: "tech issue",
-    created_on: "Jun 29,2022",
-    last_edit: "Jun 30,2022",
-    status: "open",
-    action: " send mail with bla bla ",
-    reportdetails:
-      "I exchanged a bag and brand rejected the request without response",
-  },
-  {
-    id: 101,
-    username: "roaa",
-    title: "order delay ",
-    created_on: "Jun 5,2022",
-    last_edit: "Jun 10,2022",
-    status: "open",
-    action: " send mail with bla bla ",
-    reportdetails: "My order delayed around 12 days",
-  },
-  {
-    id: 102,
-    username: "roaa",
-    title: "order delay ",
-    created_on: "Jun 18,2022",
-    last_edit: "Jun 25,2022",
-    status: "closed",
-    action: " send mail with bla bla ",
-    reportdetails: "My order delayed around 12 days",
-  },
-  {
-    id: 103,
-    username: "roaa",
-    title: "order delay ",
-    created_on: "Jun 5,2022",
-    last_edit: "Jun 13,2022",
-    status: "closed",
-    action: " send mail with bla bla ",
-    reportdetails: "My order delayed around 12 days",
-  },
-  {
-    id: 104,
-    username: "roaa",
-    title: "order delay ",
-    created_on: "Jun 18,2022",
-    last_edit: "Jun 25,2022",
-    status: "closed",
-    action: " send mail with bla bla ",
-    reportdetails:
-      "My order delayed around 12 days,My order delayed around 12 days",
-  },
-  {
-    id: 105,
-    username: "roaa",
-    title: "order delay ",
-    created_on: "Jun 15,2022",
-    last_edit: "Jun 25,2022",
-    status: "open",
-    action: " send mail with bla bla ",
-    reportdetails:
-      "My order delayed around 12 days,My order delayed around 12 days,My order delayed around 12 days,My order delayed around 12 days,My order delayed around 12 days",
-  },
-];
-
 const ReportsTable = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [currentData, setCurrentData] = useState({});
   const [editableAction, setEditableAction] = useState("");
-  const [tableData, setTableData] = useState(initialTableData);
+  const [tableData, setTableData] = useState([]);
   const [filterStatus, setFilterStatus] = useState("all");
+
+  useEffect(() => {
+    // Fetch data from the API
+    fetch("http://aqay.runasp.net/api/Reports?pageIndex=1")
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedData = data.map((report) => ({
+          id: report.id,
+          title: report.title,
+          created_on: new Date(report.createdOn).toLocaleDateString(),
+          last_edit: new Date(report.lastEdit).toLocaleDateString(),
+          status: report.reportstatus === 1 ? "open" : "closed",
+          action: report.action || "",
+          reportdetails: report.description,
+        }));
+        setTableData(formattedData);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
   const handleIconClick = (dataItem) => {
     setCurrentData(dataItem);
@@ -100,7 +52,6 @@ const ReportsTable = () => {
   };
 
   const handleClosePopup = () => {
-    // Update the action in tableData
     const updatedData = tableData.map((item) =>
       item.id === currentData.id ? { ...item, action: editableAction } : item
     );
@@ -156,7 +107,6 @@ const ReportsTable = () => {
           <tbody>
             {filteredTableData.map((dataItem) => (
               <tr key={dataItem.id}>
-                <td>{dataItem.username}</td>
                 <td>{dataItem.title}</td>
                 <td>
                   <div className="icon-container">

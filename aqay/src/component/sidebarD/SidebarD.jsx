@@ -196,18 +196,13 @@ const SidebarD = () => {
         </button>
       </div>
       <div className="sidebar-body">
-        {/* <div>
-          <span className="menu-link-icon">
-            <MdOutlineGridView size={30} />
-          </span>
-          <span className="sidebar-brand-text">Dashboard</span>
-        </div> */}
         <div className="menu-link-content">
           <span className="menu-link-icon">
             <MdOutlineGridView size={30} />
           </span>
           <span className="menu-link-text">Dashboard</span>
         </div>
+        <br />
 
         <div className="sidebar-menu">
           <ul className="menu-list">
