@@ -4,8 +4,7 @@ import Navbar from "../component/Navbar";
 
 function PersonalInfo() {
   const [formData, setFormData] = useState({
-    firstName: "Amira",
-    lastName: "Muhammed",
+    username: "amirmuham",
     email: "amirmuham@gj.com",
     phoneNumber: "011111133333",
     birthday: "2002-07-23",
@@ -44,34 +43,19 @@ function PersonalInfo() {
             <form>
               <div className="mb-4">
                 <label
-                  htmlFor="firstName"
+                  htmlFor="username"
                   className="block text-gray-700 font-bold mb-2"
                 >
-                  First Name
+                  Username
                 </label>
                 <input
                   type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
+                  id="username"
+                  name="username"
+                  value={formData.username}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded-lg"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="lastName"
-                  className="block text-gray-700 font-bold mb-2"
-                >
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded-lg"
+                  className="w-full text-gray-500  bg-gray-200 px-3 py-2 border rounded-lg"
+                  disabled
                 />
               </div>
               <div className="mb-4">

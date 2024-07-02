@@ -3,7 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 const CartItem = ({ item, onQuantityChange, onRemoveItem }) => {
   const handleQuantityChange = (e) => {
     const newQuantity = parseInt(e.target.value);
-    if (newQuantity >= 0) {
+    if (newQuantity >= 1) {
       onQuantityChange(item.id, newQuantity);
     }
   };

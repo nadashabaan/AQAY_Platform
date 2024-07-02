@@ -50,7 +50,6 @@ function SignUpFormC() {
             <h2>SIGN UP</h2>
             <form>
               <input type="email" placeholder="Enter your email" required />
-              <input type="text" placeholder="Enter your username" required />
               <input
                 type="password"
                 placeholder="Enter your password"
