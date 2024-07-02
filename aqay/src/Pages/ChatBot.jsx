@@ -4,7 +4,6 @@ import { RiUserSearchLine } from "react-icons/ri";
 import "../CSS/ChatBot.css";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
-
 const ChatBot = () => {
   const [messages, setMessages] = useState([
     { text: "Hello , How can I help you today Amira!", sender: "bot" },
@@ -19,7 +18,6 @@ const ChatBot = () => {
       sender: "bot",
     },
   ]);
-
   const [input, setInput] = useState("");
 
   const handleSend = () => {
@@ -28,7 +26,6 @@ const ChatBot = () => {
       setInput("");
     }
   };
-
   return (
     <>
       <Navbar />
@@ -69,5 +66,4 @@ const ChatBot = () => {
     </>
   );
 };
-
 export default ChatBot;

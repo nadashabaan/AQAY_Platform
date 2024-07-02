@@ -1,37 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SUM from "../assets/Images/SUM.png";
+
 function SignUpFormM() {
   const [formData, setFormData] = useState({
     email: "",
+    brandName: "",
     password: "",
     confirmPassword: "",
-    dateOfBirth: { day: "", month: "", year: "" },
-    gender: "",
+    phoneNumber: "",
+    userType: "",
+    taxRegistrationNumber: "",
+    nationalId: "",
   });
 
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
-  // State to store the value of each input field
-  // const [inputValues, setInputValues] = useState({
-  //   company: "",
-  //   individual: "",
-  // });
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setInputValues((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleRadioChange = (event) => {
+    setFormData({
+      ...formData,
+      userType: event.target.value,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implement your submission logic here, for example sending the data to an API endpoint
     console.log("Form data submitted:", formData);
   };
 
@@ -51,52 +50,96 @@ function SignUpFormM() {
             ever-evolving world of ecommerce. Let's elevate local talent
             together
           </p>
-          <img src={SUM} />
+          <img src={SUM} alt="Illustration" />
         </div>
         <div className="right-section-M">
           <div className="signup-form">
             <h2>SIGN UP</h2>
-            <form>
-              <input type="email" placeholder="Enter your email" required />
-              <input type="text" placeholder="Enter your Brand Name" required />
-
+            <form onSubmit={handleSubmit}>
               <input
-                type="password"
-                placeholder="Enter your password"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="text"
+                name="brandName"
+                placeholder="Enter your Brand Name"
+                value={formData.brandName}
+                onChange={handleInputChange}
                 required
               />
               <input
                 type="password"
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="password"
+                name="confirmPassword"
                 placeholder="Confirm your password"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
                 required
               />
               <input
                 type="tel"
-                minlength="11"
-                maxlength="11"
+                name="phoneNumber"
                 placeholder="Phone number"
+                minLength="11"
+                maxLength="11"
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
                 required
               />
               <label>
-                 Business company 
                 <input
-                  type="tel"
-                  name="company"
-                  placeholder="Tax registration number"
-                  maxLength={9}
-                  minlength="9"
+                  type="radio"
+                  name="userType"
+                  value="business"
+                  checked={formData.userType === "business"}
+                  onChange={handleRadioChange}
                 />
+                Business company
               </label>
               <label>
-                Individual Business  
+                <input
+                  type="radio"
+                  name="userType"
+                  value="individual"
+                  checked={formData.userType === "individual"}
+                  onChange={handleRadioChange}
+                />
+                Individual Business
+              </label>
+              {formData.userType === "business" && (
                 <input
                   type="tel"
-                  name="individual"
-                  placeholder="National ID"
-                  maxLength={14}
-                  minlength="14"
+                  name="taxRegistrationNumber"
+                  placeholder="Tax registration number"
+                  maxLength="9"
+                  value={formData.taxRegistrationNumber}
+                  onChange={handleInputChange}
+                  required
                 />
-              </label>
+              )}
+              {formData.userType === "individual" && (
+                <input
+                  type="tel"
+                  name="nationalId"
+                  placeholder="National ID"
+                  maxLength="14"
+                  value={formData.nationalId}
+                  onChange={handleInputChange}
+                  required
+                />
+              )}
               <Link to="/SignIn">If you already have an account Sign in</Link>
               <button type="submit">SIGN UP</button>
             </form>
