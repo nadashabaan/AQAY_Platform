@@ -7,8 +7,8 @@ function SignUpFormC() {
     email: "",
     password: "",
     passwordConfirm: "",
-    dateOfBirth: "",
     gender: "",
+    dateOfBirth: "",
   });
 
   const handleInputChange = (event) => {
@@ -34,6 +34,7 @@ function SignUpFormC() {
       password: formData.password,
       passwordConfirm: formData.passwordConfirm,
       gender: formData.gender,
+      dateOfBirth: formData.dateOfBirth,
     };
 
     try {
