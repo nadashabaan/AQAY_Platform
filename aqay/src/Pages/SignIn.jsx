@@ -30,8 +30,19 @@ export const SignIn = () => {
       );
       const data = await response.json();
       if (data.isAuthenticated) {
-        console.log("Login successful:", data);
-        navigate("/DashboardA");
+        const roles = data.roles.$values;
+        if (roles.includes("Admin")) {
+          navigate("/SubReq");
+        } else if (roles.includes("Merchant")) {
+          if (data.isSub) {
+            navigate("/storeFront");
+          } else {
+            navigate("/subscriptions");
+            alert("Please subscribe to access this page.");
+          }
+        } else if (roles.includes("Consumer")) {
+          navigate("/Home");
+        }
       } else {
         setErrorMessage("Login failed. Please check your credentials.");
       }
@@ -73,7 +84,7 @@ export const SignIn = () => {
                 onChange={handleChange}
               />
               {errorMessage && <p className="error">{errorMessage}</p>}
-              <Link to="/Reset">forget password</Link>
+              <Link to="/Reset">Forget password?</Link>
               <Link to="/SignUpFormC">
                 If you don't have an account Sign up
               </Link>

@@ -48,7 +48,7 @@ const SubscriptionRequestsTable = () => {
             {tableData?.map((dataItem) => {
               return (
                 <tr key={dataItem.id}>
-                  <td>{dataItem.username}</td>
+                  <td>{dataItem.brandName}</td>
                   <td>{dataItem.email}</td>
                   <td>{dataItem.phoneNumber}</td>
                   <td>{dataItem.trn}</td>

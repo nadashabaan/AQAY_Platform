@@ -263,11 +263,16 @@ const TABLE_HEADS = [
 ];
 
 const fetchReports = async () => {
-  const response = await fetch(
-    "http://aqay.runasp.net/api/Reports?pageIndex=1"
-  );
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(
+      "http://aqay.runasp.net/api/Reports?pageIndex=1"
+    );
+    const data = await response.json();
+    return data.$values; // Assuming response is always well-formed
+  } catch (error) {
+    console.error("Error fetching reports:", error);
+    return []; // Return an empty array in case of an error
+  }
 };
 
 const ReportsTable = () => {
@@ -284,14 +289,13 @@ const ReportsTable = () => {
       const reports = await fetchReports();
       const formattedReports = reports.map((report) => ({
         id: report.id,
-        username: report.intiatorId, // Assuming this is the username
+        username: report.intiatorId,
         title: report.title,
         created_on: new Date(report.createdOn).toLocaleDateString(),
         last_edit: new Date(report.lastEdit).toLocaleDateString(),
-        status: report.reportstatus === 1 ? "open" : "closed", // Assuming 1 is open, 0 is closed
-        action: report.action || "No action taken",
+        status: report.reportstatus === 1 ? "open" : "closed",
         reportdetails: report.description,
-        email: "example@example.com", // Replace this with actual email if available in response
+        email: "example@example.com",
       }));
       setTableData(formattedReports);
     };
@@ -331,7 +335,6 @@ const ReportsTable = () => {
   };
 
   const handleSendEmail = () => {
-    // Call the send email API here
     alert(`Sending email to ${currentData.email} with body: ${emailBody}`);
     setShowSendPopup(false);
   };
@@ -389,7 +392,6 @@ const ReportsTable = () => {
                 <td>
                   <div className="icon-container">
                     <IoEyeOutline
-                      key={dataItem.id}
                       size={24}
                       onClick={() => handleIconClick(dataItem)}
                       style={{ cursor: "pointer", margin: "10px" }}
@@ -404,14 +406,14 @@ const ReportsTable = () => {
                     {dataItem.status === "open" ? (
                       <LiaToggleOffSolid
                         size={24}
-                        style={{ cursor: "pointer", margin: "10px" }}
                         onClick={() => toggleStatus(dataItem.id)}
+                        style={{ cursor: "pointer", margin: "10px" }}
                       />
                     ) : (
                       <LiaToggleOnSolid
                         size={24}
-                        style={{ cursor: "pointer", margin: "10px" }}
                         onClick={() => toggleStatus(dataItem.id)}
+                        style={{ cursor: "pointer", margin: "10px" }}
                       />
                     )}
                   </div>
@@ -420,11 +422,11 @@ const ReportsTable = () => {
                   <div className="icon-container">
                     <LuSend
                       size={24}
+                      onClick={() => handleSendIconClick(dataItem)}
                       style={{
                         cursor: "pointer",
                         margin: "10px",
                       }}
-                      onClick={() => handleSendIconClick(dataItem)}
                     />
                   </div>
                 </td>
