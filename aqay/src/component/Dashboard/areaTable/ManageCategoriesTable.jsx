@@ -18,10 +18,17 @@ const ManageCategoriesTable = () => {
     axios
       .get("http://aqay.runasp.net/api/Categories?page=1")
       .then((response) => {
-        setCategories(response.data);
+        if (response.data && response.data.$values) {
+          setCategories(response.data.$values);
+        } else {
+          setCategories([]);
+          console.error("Unexpected API response structure:", response.data);
+        }
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
+
+        setCategories([]);
       });
   };
 

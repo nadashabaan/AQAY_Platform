@@ -89,16 +89,35 @@ const ManageAccountsTable = () => {
     setFilterStatus(event.target.value);
   };
 
-  const handleToggleStatus = (id) => {
-    const updatedData = tableData.map((item) =>
-      item.id === id
-        ? {
-            ...item,
-            status: item.status === "Active" ? "Deactivated" : "Active",
-          }
-        : item
-    );
-    setTableData(updatedData);
+  const handleToggleStatus = async (id) => {
+    try {
+      const response = await fetch(
+        `http://aqay.runasp.net/api/Admin/toggle activity?id=${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to toggle status");
+      }
+
+      const updatedData = tableData.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              status: item.status === "Active" ? "Deactivated" : "Active",
+            }
+          : item
+      );
+      setTableData(updatedData);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to toggle status. Please try again.");
+    }
   };
 
   const filteredData = tableData.filter(

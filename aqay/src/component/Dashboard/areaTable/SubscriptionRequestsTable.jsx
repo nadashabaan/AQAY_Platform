@@ -1,5 +1,7 @@
 import SubscriptionRequestsAction from "./SubscriptionRequestsAction";
 import "./AreaTable.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const TABLE_HEADS = [
   "Brand Name",
@@ -10,58 +12,24 @@ const TABLE_HEADS = [
   "Action",
 ];
 
-const TABLE_DATA = [
-  {
-    id: 1,
-    brandName: "FashionCo",
-    brandEmail: "info@fashionco.com",
-    phoneNumber: "+1-202-555-0143",
-    taxRegistrationNumber: "TRN-123456789",
-    nationalId: "NID-987654321",
-  },
-  {
-    id: 2,
-    brandName: "TechieGear",
-    brandEmail: "support@techiegear.com",
-    phoneNumber: "+1-202-555-0153",
-    taxRegistrationNumber: "TRN-234567890",
-    nationalId: "NID-876543210",
-  },
-  {
-    id: 3,
-    brandName: "HomeDecor",
-    brandEmail: "contact@homedecor.com",
-    phoneNumber: "+1-202-555-0163",
-    taxRegistrationNumber: "TRN-345678901",
-    nationalId: "NID-765432109",
-  },
-  {
-    id: 4,
-    brandName: "KitchenPlus",
-    brandEmail: "sales@kitchenplus.com",
-    phoneNumber: "+1-202-555-0173",
-    taxRegistrationNumber: "TRN-456789012",
-    nationalId: "NID-654321098",
-  },
-  {
-    id: 5,
-    brandName: "OutdoorLife",
-    brandEmail: "hello@outdoorlife.com",
-    phoneNumber: "+1-202-555-0183",
-    taxRegistrationNumber: "TRN-567890123",
-    nationalId: "NID-543210987",
-  },
-  {
-    id: 6,
-    brandName: "GadgetWorld",
-    brandEmail: "info@gadgetworld.com",
-    phoneNumber: "+1-202-555-0193",
-    taxRegistrationNumber: "TRN-678901234",
-    nationalId: "NID-432109876",
-  },
-];
-
 const SubscriptionRequestsTable = () => {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://aqay.runasp.net/api/Admin/pending%20merchants?pageIndex=1"
+        );
+        setTableData(response.data.items.$values);
+      } catch (error) {
+        console.error("Error fetching subscription requests:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <section className="content-area-table">
       <div className="data-table-info">
@@ -77,16 +45,16 @@ const SubscriptionRequestsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_DATA?.map((dataItem) => {
+            {tableData?.map((dataItem) => {
               return (
                 <tr key={dataItem.id}>
-                  <td>{dataItem.brandName}</td>
-                  <td>{dataItem.brandEmail}</td>
+                  <td>{dataItem.username}</td>
+                  <td>{dataItem.email}</td>
                   <td>{dataItem.phoneNumber}</td>
-                  <td>{dataItem.taxRegistrationNumber}</td>
-                  <td>{dataItem.nationalId}</td>
+                  <td>{dataItem.trn}</td>
+                  <td>{dataItem.natid}</td>
                   <td className="dt-cell-action">
-                    <SubscriptionRequestsAction />
+                    <SubscriptionRequestsAction id={dataItem.id} />
                   </td>
                 </tr>
               );

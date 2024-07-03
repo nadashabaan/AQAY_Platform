@@ -28,18 +28,18 @@ const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("http://aqay.runasp.net/api/Categories?page=1")
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching categories:", error);
-        setLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://aqay.runasp.net/api/Categories?page=1")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setCategories(data);
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching categories:", error);
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

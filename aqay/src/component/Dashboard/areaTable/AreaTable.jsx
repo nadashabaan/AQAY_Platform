@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import AreaTableAction from "./AreaTableAction";
 import "./AreaTable.css";
+import { IoEyeOutline } from "react-icons/io5";
 
 const TABLE_HEADS = [
   "Products",
   "Order ID",
   "Date",
   "Customer name",
+  "Customer Address",
   "Status",
   "Amount",
   "Action",
@@ -19,6 +21,7 @@ const INITIAL_TABLE_DATA = [
     order_id: 11232,
     date: "2022-06-29",
     customer: "Afaq Karim",
+    address: "bla bla bla",
     status: "requested",
     amount: 400,
   },
@@ -28,6 +31,7 @@ const INITIAL_TABLE_DATA = [
     order_id: 11232,
     date: "2022-06-29",
     customer: "Afaq Karim",
+    address: "bla bla bla",
     status: "requested",
     amount: 288,
   },
@@ -37,6 +41,7 @@ const INITIAL_TABLE_DATA = [
     order_id: 11232,
     date: "2022-06-29",
     customer: "Afaq Karim",
+    address: "bla bla bla",
     status: "requested",
     amount: 500,
   },
@@ -46,6 +51,7 @@ const INITIAL_TABLE_DATA = [
     order_id: 11232,
     date: "2022-06-29",
     customer: "Afaq Karim",
+    address: "bla bla bla",
     status: "requested",
     amount: 100,
   },
@@ -55,6 +61,7 @@ const INITIAL_TABLE_DATA = [
     order_id: 11232,
     date: "2022-06-29",
     customer: "Afaq Karim",
+    address: "bla bla bla",
     status: "requested",
     amount: 60,
   },
@@ -64,6 +71,7 @@ const INITIAL_TABLE_DATA = [
     order_id: 11232,
     date: "2022-06-29",
     customer: "Afaq Karim",
+    address: "ddddd",
     status: "requested",
     amount: 80,
   },
@@ -73,6 +81,7 @@ const AreaTable = () => {
   const [tableData, setTableData] = useState(INITIAL_TABLE_DATA);
   const [statusFilter, setStatusFilter] = useState("all");
   const [dateFilter, setDateFilter] = useState("");
+  const [popupData, setPopupData] = useState(null);
 
   const handleStatusChange = (id, newStatus) => {
     const updatedData = tableData.map((item) =>
@@ -87,6 +96,14 @@ const AreaTable = () => {
 
   const handleDateFilterChange = (event) => {
     setDateFilter(event.target.value);
+  };
+
+  const handleAddressClick = (address) => {
+    setPopupData(address);
+  };
+
+  const handleClosePopup = () => {
+    setPopupData(null);
   };
 
   const filteredData = tableData.filter((item) => {
@@ -138,6 +155,14 @@ const AreaTable = () => {
                   <td>{dataItem.order_id}</td>
                   <td>{dataItem.date}</td>
                   <td>{dataItem.customer}</td>
+                  <td className="icon-container">
+                    <IoEyeOutline
+                      key={dataItem.id}
+                      size={24}
+                      onClick={() => handleAddressClick(dataItem.address)}
+                      style={{ cursor: "pointer", margin: "10px" }}
+                    />
+                  </td>
                   <td>
                     <div className="dt-status">
                       <span
@@ -161,6 +186,16 @@ const AreaTable = () => {
           </tbody>
         </table>
       </div>
+      {popupData && (
+        <div className="popup">
+          <div className="popup-content">
+            <span className="close" onClick={handleClosePopup}>
+              &times;
+            </span>
+            <p>{popupData}</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

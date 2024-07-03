@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
-const SubscriptionRequestsAction = () => {
+const SubscriptionRequestsAction = ({ id }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const handleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -19,9 +19,33 @@ const SubscriptionRequestsAction = () => {
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleAccept = async () => {
+    try {
+      const response = await axios.post(
+        `http://aqay.runasp.net/api/Admin/accept%20merchant?pendingMerchantId=${id}`
+      );
+      alert(response.data);
+    } catch (error) {
+      console.error("Error accepting merchant:", error);
+      alert("Failed to accept merchant.");
+    }
+  };
+
+  const handleReject = async () => {
+    try {
+      const response = await axios.post(
+        `http://aqay.runasp.net/api/Admin/reject%20merchant?pendingMerchantId=${id}`
+      );
+      alert(response.data);
+    } catch (error) {
+      console.error("Error rejecting merchant:", error);
+      alert("Failed to reject merchant.");
+    }
+  };
 
   return (
     <>
@@ -34,15 +58,11 @@ const SubscriptionRequestsAction = () => {
         {showDropdown && (
           <div className="action-dropdown-menu" ref={dropdownRef}>
             <ul className="dropdown-menu-list">
-              <li className="dropdown-menu-item">
-                <Link to="/view" className="dropdown-menu-link">
-                  Accept
-                </Link>
+              <li className="dropdown-menu-item" onClick={handleAccept}>
+                Accept
               </li>
-              <li className="dropdown-menu-item">
-                <Link to="/view" className="dropdown-menu-link">
-                  Reject
-                </Link>
+              <li className="dropdown-menu-item" onClick={handleReject}>
+                Reject
               </li>
             </ul>
           </div>

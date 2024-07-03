@@ -410,3 +410,9 @@
 .save-btn:hover {
   background-color: #b71c1c;
 }
+.center-icon {
+  text-align: center;
+}
+.email-textarea {
+  background-color: rgba(243, 184, 133, 0.7);
+}

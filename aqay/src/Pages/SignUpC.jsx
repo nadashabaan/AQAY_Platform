@@ -6,8 +6,8 @@ function SignUpFormC() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
-    dateOfBirth: { day: "", month: "", year: "" },
+    passwordConfirm: "",
+    dateOfBirth: "",
     gender: "",
   });
 
@@ -19,10 +19,46 @@ function SignUpFormC() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleRadioChange = (event) => {
+    setFormData({
+      ...formData,
+      gender: event.target.value === "female",
+    });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Implement your submission logic here, for example sending the data to an API endpoint
-    console.log("Form data submitted:", formData);
+
+    const payload = {
+      email: formData.email,
+      password: formData.password,
+      passwordConfirm: formData.passwordConfirm,
+      gender: formData.gender,
+    };
+
+    try {
+      const response = await fetch(
+        "http://aqay.runasp.net/api/Auth/SignupConsumer",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        alert(data.message || "Signup successful!");
+      } else {
+        throw new Error(
+          "HTTP error " + response.status + ": " + (await response.text())
+        );
+      }
+    } catch (error) {
+      alert("keep an eye on Your Email .. your account is being validated");
+    }
   };
 
   return (
@@ -42,23 +78,34 @@ function SignUpFormC() {
           <Link to="/SignUpM">
             <button>Join us as Merchant</button>
           </Link>
-
-          <img src={SUC} />
+          <img src={SUC} alt="Illustration" />
         </div>
         <div className="right-section">
           <div className="signup-form">
             <h2>SIGN UP</h2>
-            <form>
-              <input type="email" placeholder="Enter your email" required />
-              <input type="text" placeholder="Enter your username" required />
+            <form onSubmit={handleSubmit}>
               <input
-                type="password"
-                placeholder="Enter your password"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleInputChange}
                 required
               />
               <input
                 type="password"
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="password"
+                name="passwordConfirm"
                 placeholder="Confirm your password"
+                value={formData.passwordConfirm}
+                onChange={handleInputChange}
                 required
               />
               <div>
@@ -66,10 +113,11 @@ function SignUpFormC() {
                 <input
                   className="DOB"
                   type="date"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  onChange={handleInputChange}
                   required
-                  name="Date of birth"
-                  placeholder="Date of birth"
-                ></input>
+                />
               </div>
               <label>Gender</label>
               <div className="custom-radio">
@@ -79,6 +127,8 @@ function SignUpFormC() {
                     type="radio"
                     name="gender"
                     value="female"
+                    checked={formData.gender === true}
+                    onChange={handleRadioChange}
                   />{" "}
                   Female
                 </label>
@@ -88,6 +138,8 @@ function SignUpFormC() {
                     type="radio"
                     name="gender"
                     value="male"
+                    checked={formData.gender === false}
+                    onChange={handleRadioChange}
                   />{" "}
                   Male
                 </label>
