@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductB from "../component/ProductB";
 import Navbar from "../component/Navbar";
+import CategoryFilter from "../component/CategoryFilter";
 
 const BrandDetail = () => {
   const { brandName } = useParams();
@@ -127,6 +128,7 @@ const BrandDetail = () => {
   return (
     <>
       <Navbar />
+      <CategoryFilter />
       <div className="container mx-auto p-4">
         {/* <h1 className="text-3xl text-center font-bold mb-4">
         Products by {brandName}

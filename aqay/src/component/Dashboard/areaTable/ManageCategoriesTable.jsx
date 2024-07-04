@@ -88,8 +88,8 @@ const ManageCategoriesTable = () => {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search by ID or name"
-          className="filter-dropdown"
+          placeholder="Searchby Name"
+          className="filter-dropdown "
         />
         <button onClick={handleSearch} className="search-btn">
           <i className="fa fa-search"></i> Search

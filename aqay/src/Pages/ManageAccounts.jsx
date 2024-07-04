@@ -9,7 +9,6 @@ import ManageAccountsTable from "../component/Dashboard/areaTable/ManageAccounts
 const ManageAccounts = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  // adding dark-mode class if the dark mode is set on to the body tag
   useEffect(() => {
     if (theme === DARK_THEME) {
       document.body.classList.add("dark-mode");
