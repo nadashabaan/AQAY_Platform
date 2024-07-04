@@ -32,9 +32,7 @@ const SubscriptionRequestsTable = () => {
 
   return (
     <section className="content-area-table">
-      <div className="data-table-info">
-        <h4 className="data-table-title">Subscription Requests</h4>
-      </div>
+      <div className="data-table-info"></div>
       <div className="data-table-diagram">
         <table>
           <thead>

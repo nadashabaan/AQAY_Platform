@@ -98,7 +98,6 @@ const OrderHTable = () => {
   return (
     <section className="content-area-table">
       <div className="data-table-info">
-        <h4 className="data-table-title text-center">Your Orders</h4>
         <div className="filters">
           <select
             className="filter-dropdown"

@@ -134,6 +134,7 @@ const BrandDetail = () => {
   return (
     <>
       <Navbar />
+      <CategoryFilter />
       <div className="container mx-auto p-4">
         {/* <h1 className="text-3xl text-center font-bold mb-4">
         Products by {brandName}

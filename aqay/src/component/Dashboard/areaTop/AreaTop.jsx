@@ -48,7 +48,7 @@ const AreaTop = () => {
           <MdOutlineMenu size={24} />
         </button>
       </div>
-      <div className="area-top-r">
+      {/* <div className="area-top-r">
         <div
           ref={dateRangeRef}
           className={`date-range-wrapper ${
@@ -64,7 +64,7 @@ const AreaTop = () => {
             showMonthAndYearPickers={false}
           />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
