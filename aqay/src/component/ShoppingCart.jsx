@@ -28,16 +28,6 @@ const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState(initialCartItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleQuantityChange = (id, quantity) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: quantity, total: item.price * quantity }
-          : item
-      )
-    );
-  };
-
   const handleRemoveItem = (id) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
@@ -48,10 +38,10 @@ const ShoppingCart = () => {
     setIsModalOpen(true);
   };
 
-  const handleModalSubmit = (address) => {
+  const handleModalSubmit = (address, promoCode) => {
     setIsModalOpen(false);
     alert(
-      `Your order confirmed successfully.\nYou can track it through order history.\nDelivery Address: ${address}`
+      `Your order confirmed successfully.\nYou can track it through order history.\nDelivery Address: ${address}\nPromo Code: ${promoCode}`
     );
   };
 
@@ -71,9 +61,7 @@ const ShoppingCart = () => {
                 <th className="p-4">Image</th>
                 <th className="p-4">Color</th>
                 <th className="p-4">Size</th>
-                <th className="p-4">Quantity</th>
                 <th className="p-4">Price</th>
-                <th className="p-4">Subtotal</th>
                 <th className="p-4"> </th>
               </tr>
             </thead>
@@ -82,7 +70,6 @@ const ShoppingCart = () => {
                 <CartItem
                   key={item.id}
                   item={item}
-                  onQuantityChange={handleQuantityChange}
                   onRemoveItem={handleRemoveItem}
                 />
               ))}

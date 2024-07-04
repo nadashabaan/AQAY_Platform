@@ -1,33 +1,19 @@
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
-const CartItem = ({ item, onQuantityChange, onRemoveItem }) => {
-  const handleQuantityChange = (e) => {
-    const newQuantity = parseInt(e.target.value);
-    if (newQuantity >= 1) {
-      onQuantityChange(item.id, newQuantity);
-    }
-  };
+
+const CartItem = ({ item, onRemoveItem }) => {
   return (
     <tr>
-      <td className="p-4">
+      <td className="p-4 flex justify-center items-center">
         <img
           src={item.image}
           alt={item.name}
-          className="w-20 h-20 object-cover"
+          className="w-20 h-20 object-cover  center "
         />
       </td>
       <td className="p-4">{item.color}</td>
       <td className="p-4">{item.size}</td>
-      <td className="p-4">
-        <input
-          type="number"
-          value={item.quantity}
-          onChange={handleQuantityChange}
-          className="w-12 text-center border border-gray-300 rounded"
-        />
-      </td>
       <td className="p-4">${item.price}</td>
-      <td className="p-4">${item.total}</td>
       <td className="p-4">
         <button
           onClick={() => onRemoveItem(item.id)}

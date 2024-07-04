@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductB from "../component/ProductB";
 import Navbar from "../component/Navbar";
+import CategoryFilter from "../component/CategoryFilter";
 
 const BrandDetail = () => {
   const { brandName } = useParams();
@@ -123,7 +124,13 @@ const BrandDetail = () => {
   const handleAddToCart = (productId) => {
     console.log(`Add to cart product with id ${productId}`);
   };
-
+  const [categories, setCategories] = useState([
+    "All",
+    "Toys",
+    "Books",
+    "Games",
+  ]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
   return (
     <>
       <Navbar />
@@ -131,6 +138,11 @@ const BrandDetail = () => {
         {/* <h1 className="text-3xl text-center font-bold mb-4">
         Products by {brandName}
       </h1> */}
+        <CategoryFilter
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={(e) => setSelectedCategory(e.target.value)}
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((product) => (
             <ProductB
