@@ -16,6 +16,7 @@ import "./SidebarD.css";
 import { SidebarContextD } from "../../context/SidebarContextD";
 import logo from "../../assets/Images/logo.png";
 import { IoStatsChartOutline } from "react-icons/io5";
+import LogOut from "../../Pages/LogOut";
 const SidebarDA = () => {
   const { theme } = useContext(ThemeContext);
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContextD);
@@ -144,14 +145,18 @@ const SidebarDA = () => {
           <ul className="menu-list">
             <li className="menu-item">
               <Link
-                to="/"
-                className={`menu-link ${activeLink === "/" ? "active" : ""}`}
+                to="/SignIn"
+                className={`menu-link ${
+                  activeLink === "SignIn" ? "active" : ""
+                }`}
                 onClick={() => setActiveLink("/")}
               >
                 <span className="menu-link-icon">
                   <MdOutlineLogout size={24} />
                 </span>
-                <span className="menu-link-text">Logout</span>
+                <span className="menu-link-text">
+                  <LogOut />
+                </span>
               </Link>
             </li>
           </ul>

@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import {
   BarChart,
   Bar,
@@ -7,124 +8,88 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  CartesianGrid,
 } from "recharts";
 import { ThemeContext } from "../../../context/ThemeContext";
-import { FaArrowUpLong } from "react-icons/fa6";
+import { useUser } from "../../../context/UserContext";
 import { LIGHT_THEME } from "../../../constants/themeConstants";
 import "./AreaCharts.css";
 
-const data = [
-  {
-    month: "Jan",
-    loss: 70,
-    profit: 100,
-  },
-  {
-    month: "Feb",
-    loss: 55,
-    profit: 85,
-  },
-  {
-    month: "Mar",
-    loss: 35,
-    profit: 90,
-  },
-  {
-    month: "April",
-    loss: 90,
-    profit: 70,
-  },
-  {
-    month: "May",
-    loss: 55,
-    profit: 80,
-  },
-  {
-    month: "Jun",
-    loss: 30,
-    profit: 50,
-  },
-  {
-    month: "Jul",
-    loss: 32,
-    profit: 75,
-  },
-  {
-    month: "Aug",
-    loss: 62,
-    profit: 86,
-  },
-  {
-    month: "Sep",
-    loss: 55,
-    profit: 78,
-  },
-];
-
 const AreaBarChart = () => {
   const { theme } = useContext(ThemeContext);
-
-  const formatTooltipValue = (value) => {
-    return `${value}k`;
-  };
-
-  const formatYAxisLabel = (value) => {
-    return `${value}k`;
-  };
+  const { brandId } = useUser();
+  const [chartData, setChartData] = useState([]);
 
   const formatLegendValue = (value) => {
     return value.charAt(0).toUpperCase() + value.slice(1);
   };
 
+  useEffect(() => {
+    if (!brandId) {
+      console.log("No brand ID available");
+      return;
+    }
+
+    const fetchStatistics = async () => {
+      try {
+        const response = await axios.get(
+          `http://aqay.runasp.net/api/MerchantDashboard/statistics?brandId=${brandId}`
+        );
+        const { sixMonthRevenueList } = response.data;
+
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        const currentMonth = new Date().getMonth();
+        const chartData = sixMonthRevenueList.$values.map((value, index) => {
+          const monthIndex = (currentMonth - 5 + index + 12) % 12;
+          return {
+            Month: months[monthIndex],
+            Revenue: value,
+          };
+        });
+        setChartData(chartData);
+      } catch (error) {
+        console.error("Failed to fetch statistics:", error);
+      }
+    };
+
+    fetchStatistics();
+  }, [brandId]);
+
   return (
     <div className="bar-chart">
-      <div className="bar-chart-info">
-        <h5 className="bar-chart-title">Total Revenue</h5>
-        <div className="chart-info-data">
-          <div className="info-data-value">$50.4K</div>
-          <div className="info-data-text">
-            <FaArrowUpLong />
-            <p>5% than last month.</p>
-          </div>
-        </div>
-      </div>
       <div className="bar-chart-wrapper">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={300}>
           <BarChart
-            width={500}
-            height={200}
-            data={data}
+            data={chartData}
             margin={{
               top: 5,
-              right: 5,
-              left: 0,
+              right: 30,
+              left: 20,
               bottom: 5,
             }}
           >
+            <CartesianGrid strokeDasharray="3 3" />
             <XAxis
-              padding={{ left: 10 }}
-              dataKey="month"
-              tickSize={0}
-              axisLine={false}
-              tick={{
-                fill: `${theme === LIGHT_THEME ? "#676767" : "#f3f3f3"}`,
-                fontSize: 14,
-              }}
+              dataKey="Month"
+              tick={{ fill: theme === LIGHT_THEME ? "#676767" : "#f3f3f3" }}
             />
             <YAxis
-              padding={{ bottom: 10, top: 10 }}
-              tickFormatter={formatYAxisLabel}
-              tickCount={6}
-              axisLine={false}
-              tickSize={0}
-              tick={{
-                fill: `${theme === LIGHT_THEME ? "#676767" : "#f3f3f3"}`,
-              }}
+              tick={{ fill: theme === LIGHT_THEME ? "#676767" : "#f3f3f3" }}
             />
-            <Tooltip
-              formatter={formatTooltipValue}
-              cursor={{ fill: "transparent" }}
-            />
+            <Tooltip />
             <Legend
               iconType="circle"
               iconSize={10}
@@ -133,20 +98,10 @@ const AreaBarChart = () => {
               formatter={formatLegendValue}
             />
             <Bar
-              dataKey="profit"
-              fill="#475be8"
-              activeBar={false}
-              isAnimationActive={false}
-              barSize={24}
-              radius={[4, 4, 4, 4]}
-            />
-            <Bar
-              dataKey="loss"
-              fill="#e3e7fc"
-              activeBar={false}
-              isAnimationActive={false}
-              barSize={24}
-              radius={[4, 4, 4, 4]}
+              dataKey="Revenue"
+              fill="#51d03f"
+              barSize={20}
+              radius={[10, 10, 0, 0]}
             />
           </BarChart>
         </ResponsiveContainer>

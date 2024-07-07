@@ -21,33 +21,29 @@ const ManageAccountsTable = () => {
     const fetchAccounts = async () => {
       try {
         const merchantResponse = await axios.get(
-          "http://aqay.runasp.net/api/Admin/merchants?pageIndex=1"
+          "http://aqay.runasp.net/api/Admin/merchants"
         );
         const consumerResponse = await axios.get(
-          "http://aqay.runasp.net/api/Admin/consumers?pageIndex=1"
+          "http://aqay.runasp.net/api/Admin/consumers"
         );
 
-        const merchants = merchantResponse.data.items.$values.map(
-          (merchant) => ({
-            id: merchant.id,
-            name: merchant.userName,
-            email: merchant.email,
-            phone: merchant.phoneNumber || "N/A",
-            type: "Merchant",
-            status: merchant.isActive ? "Active" : "Deactivated",
-          })
-        );
+        const merchants = merchantResponse.data.$values.map((merchant) => ({
+          id: merchant.id,
+          name: merchant.userName,
+          email: merchant.email,
+          phone: merchant.phoneNumber || "N/A",
+          type: "Merchant",
+          status: merchant.isActive ? "Active" : "Deactivated",
+        }));
 
-        const consumers = consumerResponse.data.items.$values.map(
-          (consumer) => ({
-            id: consumer.id,
-            name: consumer.userName,
-            email: consumer.email,
-            phone: "N/A",
-            type: "Consumer",
-            status: consumer.isActive ? "Active" : "Deactivated",
-          })
-        );
+        const consumers = consumerResponse.data.$values.map((consumer) => ({
+          id: consumer.id,
+          name: consumer.userName,
+          email: consumer.email,
+          phone: "N/A",
+          type: "Consumer",
+          status: consumer.isActive ? "Active" : "Deactivated",
+        }));
 
         setTableData([...merchants, ...consumers]);
       } catch (error) {

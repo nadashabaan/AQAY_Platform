@@ -1,31 +1,49 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { BsRobot } from "react-icons/bs";
 import { RiUserSearchLine } from "react-icons/ri";
 import "../CSS/ChatBot.css";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
+
 const ChatBot = () => {
   const [messages, setMessages] = useState([
-    { text: "Hello , How can I help you today Amira!", sender: "bot" },
-    {
-      text: "I want to buy a gift for my nephew he is a newborn",
-      sender: "user",
-    },
-    { text: "You can buy a handmade toy from COCO", sender: "bot" },
-    { text: "Ok, but it's safe ?", sender: "user" },
-    {
-      text: "Make sure it is made of cotton and it extremely easy to clean",
-      sender: "bot",
-    },
+    { text: "Hello, how can I help you today?", sender: "bot" },
   ]);
-  const [input, setInput] = useState("");
+  const [user_input, setInput] = useState("");
 
-  const handleSend = () => {
-    if (input.trim()) {
-      setMessages([...messages, { text: input, sender: "user" }]);
+  const handleSend = async () => {
+    if (user_input.trim()) {
+      setMessages((prev) => [...prev, { text: user_input, sender: "user" }]);
+
+      try {
+        const response = await axios.post(
+          "https://aqay-assistant.onrender.com/AqayAssistant",
+          {
+            user_input,
+          }
+        );
+        const botResponse = response.data.response;
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: botResponse, sender: "bot" },
+        ]);
+      } catch (error) {
+        alert(error);
+        console.error("Failed to fetch response from the bot:", error);
+
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            text: "Sorry, there was an error connecting to the bot.",
+            sender: "bot",
+          },
+        ]);
+      }
       setInput("");
     }
   };
+
   return (
     <>
       <Navbar />
@@ -54,7 +72,7 @@ const ChatBot = () => {
             type="text"
             className="chat-input"
             placeholder="Type your message for AQAY chatbot here"
-            value={input}
+            value={user_input}
             onChange={(e) => setInput(e.target.value)}
           />
           <button className="send-button" onClick={handleSend}>
@@ -66,4 +84,5 @@ const ChatBot = () => {
     </>
   );
 };
+
 export default ChatBot;

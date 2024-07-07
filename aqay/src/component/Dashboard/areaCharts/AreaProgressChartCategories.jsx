@@ -26,11 +26,11 @@ const data = [
   },
 ];
 
-const AreaProgressChartA = () => {
+const AreaProgressChartCategories = () => {
   return (
     <div className="progress-bar">
       <div className="progress-bar-info">
-        <h4 className="progress-bar-title">Most Sold Items</h4>
+        <h4 className="progress-bar-title">Top Categories Sales</h4>
       </div>
       <div className="progress-bar-list">
         {data?.map((progressbar) => {
@@ -58,4 +58,4 @@ const AreaProgressChartA = () => {
   );
 };
 
-export default AreaProgressChartA;
+export default AreaProgressChartCategories;

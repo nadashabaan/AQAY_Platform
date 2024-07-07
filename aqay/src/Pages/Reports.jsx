@@ -9,7 +9,6 @@ import ReportsTable from "../component/Dashboard/areaTable/ReportsTable";
 const Reports = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  // adding dark-mode class if the dark mode is set on to the body tag
   useEffect(() => {
     if (theme === DARK_THEME) {
       document.body.classList.add("dark-mode");
@@ -20,7 +19,6 @@ const Reports = () => {
   return (
     <>
       <ReportsTable />
-      {/* <SubscriptionRequestsTable /> */}
       <button type="button" className="theme-toggle-btn" onClick={toggleTheme}>
         {theme === LIGHT_THEME ? (
           <ImSun className="theme-icon" />

@@ -1,15 +1,36 @@
 import image from "../../../assets/Images/image.png";
+
 import React from "react";
 import PropTypes from "prop-types";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ProductCard = ({ product }) => {
+  const handleRemoveProduct = async (productId) => {
+    try {
+      const response = await axios.delete(
+        `http://aqay.runasp.net/api/Products?id=${productId}`
+      );
+      if (response.status === 200) {
+        alert("Product removed successfully!");
+      } else {
+        throw new Error("Failed to delete the product");
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert("Failed to remove product. Please try again.");
+    }
+  };
+
   return (
     <div className="product-card">
       <div className="product-card-info">
-        {/* <img src={product.image} alt={product.title} className="product-image" /> */}
-        <img src={image} alt={product.title} className="product-image" />
+        <img
+          src={product.image || { image }}
+          alt={product.title}
+          className="product-image"
+        />
         <div className="product-details">
           <h5 className="product-category">{product.category}</h5>
           <h2 className="product-title">{product.title}</h2>
@@ -30,7 +51,12 @@ const ProductCard = ({ product }) => {
         <button className="product-btn">
           <Link to="/editProduct">Edit</Link>
         </button>
-        <button className="product-btn">Remove</button>
+        <button
+          className="product-btn"
+          onClick={() => handleRemoveProduct(product.id)}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );
@@ -38,7 +64,8 @@ const ProductCard = ({ product }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    image: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    image: PropTypes.string,
     category: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,

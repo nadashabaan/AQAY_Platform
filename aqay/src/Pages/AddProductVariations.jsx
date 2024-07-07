@@ -59,7 +59,7 @@ const AddProductVariations = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Placeholder for the API call to add the product
+
     console.log("Product added:", productVar);
     alert("Product added! Check the console for details.");
   };
@@ -67,7 +67,7 @@ const AddProductVariations = () => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: handleDrop,
-    maxFiles: 1, // Ensure only one file is accepted
+    maxFiles: 1,
   });
 
   return (

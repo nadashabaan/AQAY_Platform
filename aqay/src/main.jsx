@@ -5,12 +5,15 @@ import "./index.css";
 import "./App.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import { SidebarProvider } from "./context/SidebarContextD.jsx";
+import { UserProvider } from "./context/UserContext";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <SidebarProvider>
-        <App />
-      </SidebarProvider>
-    </ThemeProvider>
+    <UserProvider>
+      <ThemeProvider>
+        <SidebarProvider>
+          <App />
+        </SidebarProvider>
+      </ThemeProvider>
+    </UserProvider>
   </React.StrictMode>
 );

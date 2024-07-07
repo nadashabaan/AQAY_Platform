@@ -1,6 +1,6 @@
-import SubscriptionRequestsAction from "./SubscriptionRequestsAction";
+import React, { useEffect, useState } from "react";
 import "./AreaTable.css";
-import { useEffect, useState } from "react";
+import SubscriptionRequestsAction from "./SubscriptionRequestsAction";
 import axios from "axios";
 
 const TABLE_HEADS = [
@@ -19,9 +19,9 @@ const SubscriptionRequestsTable = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://aqay.runasp.net/api/Admin/pending%20merchants?pageIndex=1"
+          "http://aqay.runasp.net/api/Admin/pending%20merchants"
         );
-        setTableData(response.data.items.$values);
+        setTableData(response.data.$values);
       } catch (error) {
         console.error("Error fetching subscription requests:", error);
       }
@@ -30,6 +30,10 @@ const SubscriptionRequestsTable = () => {
     fetchData();
   }, []);
 
+  const handleRemoveRequest = (id) => {
+    setTableData((currentData) => currentData.filter((item) => item.id !== id));
+  };
+
   return (
     <section className="content-area-table">
       <div className="data-table-info"></div>
@@ -37,26 +41,27 @@ const SubscriptionRequestsTable = () => {
         <table>
           <thead>
             <tr>
-              {TABLE_HEADS?.map((th, index) => (
+              {TABLE_HEADS.map((th, index) => (
                 <th key={index}>{th}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {tableData?.map((dataItem) => {
-              return (
-                <tr key={dataItem.id}>
-                  <td>{dataItem.brandName}</td>
-                  <td>{dataItem.email}</td>
-                  <td>{dataItem.phoneNumber}</td>
-                  <td>{dataItem.trn}</td>
-                  <td>{dataItem.natid}</td>
-                  <td className="dt-cell-action">
-                    <SubscriptionRequestsAction id={dataItem.id} />
-                  </td>
-                </tr>
-              );
-            })}
+            {tableData.map((dataItem) => (
+              <tr key={dataItem.id}>
+                <td>{dataItem.brandName}</td>
+                <td>{dataItem.email}</td>
+                <td>{dataItem.phoneNumber}</td>
+                <td>{dataItem.trn}</td>
+                <td>{dataItem.natid}</td>
+                <td className="dt-cell-action">
+                  <SubscriptionRequestsAction
+                    id={dataItem.id}
+                    onRemove={handleRemoveRequest}
+                  />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

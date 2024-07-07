@@ -1,87 +1,53 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import AreaTableAction from "./AreaTableAction";
 import "./AreaTable.css";
 import { IoEyeOutline } from "react-icons/io5";
+import { useUser } from "../../../context/UserContext";
 
 const TABLE_HEADS = [
-  "Products",
+  "Product Name",
   "Order ID",
   "Date",
-  "Customer name",
-  "Customer Address",
+  "Customer Name",
+  "Address",
   "Status",
   "Amount",
   "Action",
 ];
 
-const INITIAL_TABLE_DATA = [
-  {
-    id: 100,
-    name: "Iphone 13 Pro",
-    order_id: 11232,
-    date: "2022-06-29",
-    customer: "Afaq Karim",
-    address: "bla bla bla",
-    status: "requested",
-    amount: 400,
-  },
-  {
-    id: 101,
-    name: "Macbook Pro",
-    order_id: 11232,
-    date: "2022-06-29",
-    customer: "Afaq Karim",
-    address: "bla bla bla",
-    status: "requested",
-    amount: 288,
-  },
-  {
-    id: 102,
-    name: "Apple Watch",
-    order_id: 11232,
-    date: "2022-06-29",
-    customer: "Afaq Karim",
-    address: "bla bla bla",
-    status: "requested",
-    amount: 500,
-  },
-  {
-    id: 103,
-    name: "Microsoft Book",
-    order_id: 11232,
-    date: "2022-06-29",
-    customer: "Afaq Karim",
-    address: "bla bla bla",
-    status: "requested",
-    amount: 100,
-  },
-  {
-    id: 104,
-    name: "Apple Pen",
-    order_id: 11232,
-    date: "2022-06-29",
-    customer: "Afaq Karim",
-    address: "bla bla bla",
-    status: "requested",
-    amount: 60,
-  },
-  {
-    id: 105,
-    name: "Airpods",
-    order_id: 11232,
-    date: "2022-06-29",
-    customer: "Afaq Karim",
-    address: "ddddd",
-    status: "requested",
-    amount: 80,
-  },
-];
-
 const AreaTable = () => {
-  const [tableData, setTableData] = useState(INITIAL_TABLE_DATA);
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [dateFilter, setDateFilter] = useState("");
+  const { brandId } = useUser();
+  const [tableData, setTableData] = useState([]);
+  const [statusFilter, setStatusFilter] = useState("0");
   const [popupData, setPopupData] = useState(null);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (!brandId) {
+        console.log("Brand ID is not available");
+        return;
+      }
+
+      try {
+        const response = await axios.get(
+          `http://aqay.runasp.net/api/Order/brand/orders?brandId=${brandId}&status=${statusFilter}`
+        );
+        setTableData(
+          response.data.$values.map((order) => ({
+            ...order,
+            status: order.orderstatuses === 0 ? "Pending" : "Processed",
+            amount: parseFloat(order.totalPrice).toFixed(2),
+            date: new Date(order.createdOn).toLocaleDateString(),
+          }))
+        );
+      } catch (error) {
+        console.error("Failed to fetch orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, [statusFilter, brandId]);
 
   const handleStatusChange = (id, newStatus) => {
     const updatedData = tableData.map((item) =>
@@ -94,10 +60,6 @@ const AreaTable = () => {
     setStatusFilter(event.target.value);
   };
 
-  const handleDateFilterChange = (event) => {
-    setDateFilter(event.target.value);
-  };
-
   const handleAddressClick = (address) => {
     setPopupData(address);
   };
@@ -105,13 +67,6 @@ const AreaTable = () => {
   const handleClosePopup = () => {
     setPopupData(null);
   };
-
-  const filteredData = tableData.filter((item) => {
-    const statusMatches =
-      statusFilter === "all" || item.status === statusFilter;
-    const dateMatches = !dateFilter || item.date === dateFilter;
-    return statusMatches && dateMatches;
-  });
 
   return (
     <section className="content-area-table">
@@ -122,66 +77,46 @@ const AreaTable = () => {
             onChange={handleStatusFilterChange}
             value={statusFilter}
           >
-            <option value="all">All</option>
-            <option value="requested">Requested</option>
-            <option value="processing">Processing</option>
-            <option value="pending">Pending</option>
-            <option value="delivered">Delivered</option>
-            <option value="shipped">Shipped</option>
+            <option value="0">Pending</option>
+            <option value="1">Processed</option>
           </select>
-          {/* <input
-            type="date"
-            className="filter-date"
-            onChange={handleDateFilterChange}
-            value={dateFilter}
-          /> */}
         </div>
       </div>
       <div className="data-table-diagram">
         <table>
           <thead>
             <tr>
-              {TABLE_HEADS?.map((th, index) => (
+              {TABLE_HEADS.map((th, index) => (
                 <th key={index}>{th}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {filteredData?.map((dataItem) => {
-              return (
-                <tr key={dataItem.id}>
-                  <td>{dataItem.name}</td>
-                  <td>{dataItem.order_id}</td>
-                  <td>{dataItem.date}</td>
-                  <td>{dataItem.customer}</td>
-                  <td className="icon-container">
-                    <IoEyeOutline
-                      key={dataItem.id}
-                      size={24}
-                      onClick={() => handleAddressClick(dataItem.address)}
-                      style={{ cursor: "pointer", margin: "10px" }}
-                    />
-                  </td>
-                  <td>
-                    <div className="dt-status">
-                      <span
-                        className={`dt-status-dot dot-${dataItem.status}`}
-                      ></span>
-                      <span className="dt-status-text">{dataItem.status}</span>
-                    </div>
-                  </td>
-                  <td>${dataItem.amount.toFixed(2)}</td>
-                  <td className="dt-cell-action">
-                    <AreaTableAction
-                      currentStatus={dataItem.status}
-                      onStatusChange={(newStatus) =>
-                        handleStatusChange(dataItem.id, newStatus)
-                      }
-                    />
-                  </td>
-                </tr>
-              );
-            })}
+            {tableData.map((dataItem) => (
+              <tr key={dataItem.id}>
+                <td>{dataItem.productName}</td>
+                <td>{dataItem.id}</td>
+                <td>{dataItem.date}</td>
+                <td>{dataItem.consumerName}</td>
+                <td>
+                  <IoEyeOutline
+                    size={24}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleAddressClick(dataItem.address)}
+                  />
+                </td>
+                <td>{dataItem.status}</td>
+                <td>${dataItem.amount}</td>
+                <td>
+                  <AreaTableAction
+                    currentStatus={dataItem.status}
+                    onStatusChange={(newStatus) =>
+                      handleStatusChange(dataItem.id, newStatus)
+                    }
+                  />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

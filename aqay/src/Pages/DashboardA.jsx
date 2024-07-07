@@ -26,7 +26,7 @@ const DashboardA = () => {
       <AreaTop />
       <AreaCardsA />
       <AreaChartsA />
-      {/* <SubscriptionRequestsTable /> */}
+
       <button type="button" className="theme-toggle-btn" onClick={toggleTheme}>
         {theme === LIGHT_THEME ? (
           <ImSun className="theme-icon" />

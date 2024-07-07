@@ -12,7 +12,6 @@ import { CgMoon } from "react-icons/cg";
 const StoreFront = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  // adding dark-mode class if the dark mode is set on to the body tag
   useEffect(() => {
     if (theme === DARK_THEME) {
       document.body.classList.add("dark-mode");
