@@ -138,6 +138,7 @@
 // };
 
 // export default ProductDetail;
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductImage from "./ProductImage";
@@ -150,7 +151,6 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // Dummy data for testing
     const dummyProduct = {
       id: productId,
       name: "Tiger Crochet Toy",

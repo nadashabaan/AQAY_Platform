@@ -106,11 +106,11 @@ const BrandDetail = () => {
 
     // Uncomment and replace with your API endpoint when ready
     /*
-    fetch(`YOUR_API_ENDPOINT/brands/${brandName}/products`)
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching brand products:', error));
-    */
+    // fetch(`YOUR_API_ENDPOINT/brands/${brandName}/products`)
+    //   .then(response => response.json())
+    //   .then(data => setProducts(data))
+    //   .catch(error => console.error('Error fetching brand products:', error));
+    // */
   }, [brandName]);
 
   const handleRemove = (productId) => {
@@ -136,14 +136,6 @@ const BrandDetail = () => {
       <Navbar />
       <CategoryFilter />
       <div className="container mx-auto p-4">
-        {/* <h1 className="text-3xl text-center font-bold mb-4">
-        Products by {brandName}
-      </h1> */}
-        <CategoryFilter
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryChange={(e) => setSelectedCategory(e.target.value)}
-        />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((product) => (
             <ProductB
