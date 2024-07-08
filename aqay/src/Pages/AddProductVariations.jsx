@@ -1,77 +1,84 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import { useDropzone } from "react-dropzone";
-import "../CSS/AddProduct.css";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 import { ThemeContext } from "../context/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "../constants/themeConstants";
 import { ImSun } from "react-icons/im";
 import { CgMoon } from "react-icons/cg";
-import { TbPhotoUp } from "react-icons/tb";
-import { MdClose } from "react-icons/md";
-import { Link } from "react-router-dom";
+import "../CSS/AddProduct.css";
 
 const AddProductVariations = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-
-  useEffect(() => {
-    if (theme === DARK_THEME) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }, [theme]);
+  const { productId } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const [productVar, setProductVar] = useState({
     size: "",
-    quantity: "",
-    images: [],
     color: "",
+    quantity: "",
+    image: null,
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (
-      name === "quantity" &&
-      value &&
-      (!/^\d+$/.test(value) || Number(value) <= 0)
-    ) {
-      alert("Quantity must be a positive number");
-      return;
-    }
-    setProductVar({ ...productVar, [name]: value });
-  };
-
-  const handleDrop = (acceptedFiles) => {
-    if (acceptedFiles.length > 1) {
-      alert("You can only upload one image");
-      return;
-    }
-    const imageUrls = acceptedFiles.map((file) => URL.createObjectURL(file));
-    setProductVar({
-      ...productVar,
-      images: imageUrls,
-    });
-  };
-
-  const removeImage = (index) => {
-    const newImages = productVar.images.filter((_, i) => i !== index);
-    setProductVar({ ...productVar, images: newImages });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log("Product added:", productVar);
-    alert("Product added! Check the console for details.");
-  };
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
-    onDrop: handleDrop,
-    maxFiles: 1,
+    onDrop: (acceptedFiles) => {
+      setProductVar((prevState) => ({
+        ...prevState,
+        image: acceptedFiles[0],
+      }));
+    },
+    multiple: false,
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("Size", productVar.size);
+    formData.append("Color", productVar.color);
+    formData.append("Quantity", productVar.quantity);
+    formData.append("ProductId", productId);
+    if (productVar.image) {
+      formData.append("ImgFile", productVar.image);
+    }
+
+    try {
+      const response = await axios.post(
+        "http://aqay.runasp.net/api/Products/product variant",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      alert("Product variation added successfully!");
+      navigate("/storeFront");
+    } catch (error) {
+      console.error("Failed to add product variation:", error);
+      alert("Failed to add product variation. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (productVar.image) {
+        // Clean up the object URL to avoid memory leaks
+        URL.revokeObjectURL(productVar.image.preview);
+      }
+    };
+  }, [productVar.image]);
 
   return (
     <>
+      <button type="button" className="theme-toggle-btn" onClick={toggleTheme}>
+        {theme === LIGHT_THEME ? (
+          <ImSun className="theme-icon" />
+        ) : (
+          <CgMoon className="theme-icon" />
+        )}
+      </button>
       <div className="add-product-container">
         <h2 className="add-product-title">Add Product Variations</h2>
         <form onSubmit={handleSubmit} className="add-product-form">
@@ -81,75 +88,53 @@ const AddProductVariations = () => {
               type="text"
               name="size"
               value={productVar.size}
-              onChange={handleChange}
-              placeholder="Enter product size"
+              onChange={(e) =>
+                setProductVar({ ...productVar, size: e.target.value })
+              }
               required
             />
           </label>
-
           <label>
             Color
             <input
               type="text"
               name="color"
               value={productVar.color}
-              onChange={handleChange}
-              placeholder="Enter product color"
+              onChange={(e) =>
+                setProductVar({ ...productVar, color: e.target.value })
+              }
               required
             />
           </label>
           <label>
             Quantity
             <input
-              type="text"
+              type="number"
               name="quantity"
               value={productVar.quantity}
-              onChange={handleChange}
-              placeholder="Enter product quantity"
+              onChange={(e) =>
+                setProductVar({ ...productVar, quantity: e.target.value })
+              }
               required
             />
           </label>
-          <label>
-            Product Images
-            <div {...getRootProps()} className="dropzone">
-              {productVar.images.length > 0 ? (
-                productVar.images.map((image, index) => (
-                  <div key={index} className="uploaded-image-container">
-                    <img
-                      src={image}
-                      alt={`Uploaded ${index}`}
-                      className="uploaded-image"
-                    />
-                    <MdClose
-                      className="remove-icon"
-                      onClick={() => removeImage(index)}
-                    />
-                  </div>
-                ))
-              ) : (
-                <p>
-                  <TbPhotoUp className="upload-icon" size={50} />
-                  <br />
-                  Drop your image here, or select it <br />
-                  <span className="browse-link">click here to browse</span>
-                </p>
-              )}
-            </div>
-          </label>
-          <div className="button-group">
-            <button type="submit" className="product-btn">
-              <Link to="/SignIn">Add Product To Store</Link>
-            </button>
+          <div {...getRootProps()} className="dropzone">
+            <input {...getInputProps()} />
+            {productVar.image && (
+              <div className="uploaded-image-container">
+                <img
+                  src={URL.createObjectURL(productVar.image)}
+                  alt="Uploaded"
+                  className="uploaded-image"
+                />
+              </div>
+            )}
           </div>
+          <button type="submit" className="product-btn">
+            Add Product Variation
+          </button>
         </form>
       </div>
-      <button type="button" className="theme-toggle-btn" onClick={toggleTheme}>
-        {theme === LIGHT_THEME ? (
-          <ImSun className="theme-icon" />
-        ) : (
-          <CgMoon className="theme-icon" />
-        )}
-      </button>
     </>
   );
 };

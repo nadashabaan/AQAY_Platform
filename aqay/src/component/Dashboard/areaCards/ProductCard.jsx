@@ -1,19 +1,18 @@
-import image from "../../../assets/Images/image.png";
-
 import React from "react";
 import PropTypes from "prop-types";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const ProductCard = ({ product }) => {
-  const handleRemoveProduct = async (productId) => {
+const ProductCard = ({ product, onRemove }) => {
+  const handleRemoveProduct = async () => {
     try {
       const response = await axios.delete(
-        `http://aqay.runasp.net/api/Products?id=${productId}`
+        `http://aqay.runasp.net/api/Products?id=${product.id}`
       );
-      if (response.status === 200) {
+      if (response.status === 204) {
         alert("Product removed successfully!");
+        onRemove(product.id);
       } else {
         throw new Error("Failed to delete the product");
       }
@@ -26,11 +25,6 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card">
       <div className="product-card-info">
-        <img
-          src={product.image || { image }}
-          alt={product.title}
-          className="product-image"
-        />
         <div className="product-details">
           <h5 className="product-category">{product.category}</h5>
           <h2 className="product-title">{product.title}</h2>
@@ -51,10 +45,7 @@ const ProductCard = ({ product }) => {
         <button className="product-btn">
           <Link to="/editProduct">Edit</Link>
         </button>
-        <button
-          className="product-btn"
-          onClick={() => handleRemoveProduct(product.id)}
-        >
+        <button className="product-btn" onClick={handleRemoveProduct}>
           Remove
         </button>
       </div>
@@ -72,6 +63,7 @@ ProductCard.propTypes = {
     rating: PropTypes.number.isRequired,
     reviews: PropTypes.number.isRequired,
   }).isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

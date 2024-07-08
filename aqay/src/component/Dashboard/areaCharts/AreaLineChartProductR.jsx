@@ -50,6 +50,9 @@ const AreaLineChartProductR = () => {
 
     fetchProductRatings();
   }, [brandId]);
+  const formatTick = (tickItem) => {
+    return `${tickItem.substring(0, 10)}...`;
+  };
 
   return (
     <div className="line-chart">
@@ -68,10 +71,14 @@ const AreaLineChartProductR = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="Product"
+              tickFormatter={formatTick}
               tick={{ fill: theme === LIGHT_THEME ? "#676767" : "#f3f3f3" }}
             />
+
             <YAxis
               tick={{ fill: theme === LIGHT_THEME ? "#676767" : "#f3f3f3" }}
+              domain={[0, 5]}
+              ticks={[0, 1, 2, 3, 4, 5]}
             />
             <Tooltip />
             <Legend verticalAlign="top" align="right" />

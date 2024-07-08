@@ -58,15 +58,16 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const tagsArray = product.tags.split(",").map((tag) => tag.trim());
+
     const postData = {
-      ...product,
+      name: product.name,
       price: parseFloat(product.price),
+      description: product.description,
       categoryId: parseInt(product.categoryId),
       categoryName: product.categoryName,
       brandId: brandId,
-      tags: tagsArray,
+      tagName: tagsArray,
     };
-
     try {
       const response = await axios.post(
         "http://aqay.runasp.net/api/Products",
@@ -75,11 +76,12 @@ const AddProduct = () => {
       if (response.data && response.data.result) {
         setProductId(response.data.result);
         alert("Product added successfully!");
-        navigate("/addProductvar");
+        navigate("/storeFront");
       } else {
         throw new Error("Unexpected response data");
       }
     } catch (error) {
+      console.log(postData);
       console.error("Failed to add product:", error);
       alert("Failed to add product. Please check your input and try again.");
     }

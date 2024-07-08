@@ -1,6 +1,14 @@
 import React, { createContext, useContext, useState } from "react";
 
-export const UserContext = createContext();
+export const UserContext = createContext({
+  user: null,
+  setUser: () => {},
+  brandId: null,
+  setBrandId: () => {},
+  productId: null,
+  setProductId: () => {},
+  logout: () => {},
+});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -10,6 +18,7 @@ export const UserProvider = ({ children }) => {
   const updateProductId = (newProductId) => {
     setProductId(newProductId);
   };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
@@ -23,7 +32,7 @@ export const UserProvider = ({ children }) => {
         brandId,
         setBrandId,
         productId,
-        updateProductId,
+        setProductId: updateProductId,
         logout,
       }}
     >

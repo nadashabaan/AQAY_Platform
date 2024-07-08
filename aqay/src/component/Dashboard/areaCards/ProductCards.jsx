@@ -38,19 +38,19 @@ const ProductCards = () => {
     }
   }, [user, brandId]);
 
+  const removeProductFromState = (productId) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((p) => p.id !== productId)
+    );
+  };
+
   return (
     <div className="content-area-cards">
-      {products.map((product, index) => (
+      {products.map((product) => (
         <ProductCard
-          key={index}
-          product={{
-            ...product,
-            title: product.name,
-            price: product.price,
-            rating: product.rate,
-            reviews: product.reviewCount,
-            category: product.category || "Loading...",
-          }}
+          key={product.id}
+          product={product}
+          onRemove={removeProductFromState}
         />
       ))}
     </div>

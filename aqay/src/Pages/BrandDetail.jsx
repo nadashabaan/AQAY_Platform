@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductB from "../component/ProductB";
 import Navbar from "../component/Navbar";
-import CategoryFilter from "../component/CategoryFilter";
+// import CategoryFilter from "../component/CategoryFilter";
 
 const BrandDetail = () => {
   const { brandName } = useParams();
@@ -103,14 +103,6 @@ const BrandDetail = () => {
     ];
 
     setProducts(dummyProducts);
-
-    // Uncomment and replace with your API endpoint when ready
-    /*
-    fetch(`YOUR_API_ENDPOINT/brands/${brandName}/products`)
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching brand products:', error));
-    */
   }, [brandName]);
 
   const handleRemove = (productId) => {
@@ -134,7 +126,7 @@ const BrandDetail = () => {
   return (
     <>
       <Navbar />
-      <CategoryFilter />
+      {/* <CategoryFilter /> */}
       <div className="container mx-auto p-4">
         {/* <h1 className="text-3xl text-center font-bold mb-4">
         Products by {brandName}
