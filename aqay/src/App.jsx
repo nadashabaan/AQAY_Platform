@@ -60,6 +60,7 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/proudDetails" element={<ProudctDetails />} />
+
         <Route path="/subscriptionPayment" element={<SubscriptionPayment />} />
         <Route path="/OrderHistory" element={<OrderHistory />} />
         <Route path="/Reset" element={<Reset />} />

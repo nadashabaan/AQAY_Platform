@@ -1,5 +1,6 @@
 import Navbar from "../component/Navbar";
 import WishlistProduct from "../component/WishlistProduct";
+
 import "../CSS/WishlistProducts.css";
 import React, { useState } from "react";
 
@@ -91,11 +92,6 @@ const WishlistPage = () => {
               onAddToCart={handleAddToCart}
             />
           ))}
-        </div>
-        <div className="pagination">
-          <button className="pagination-button">1</button>
-          <button className="pagination-button">2</button>
-          <button className="pagination-button">3</button>
         </div>
       </div>
     </>

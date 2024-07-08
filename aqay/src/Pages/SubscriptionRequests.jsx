@@ -8,8 +8,6 @@ import { CgMoon } from "react-icons/cg";
 import SubscriptionRequestsTable from "../component/Dashboard/areaTable/SubscriptionRequestsTable";
 const SubscriptionRequests = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-
-  // adding dark-mode class if the dark mode is set on to the body tag
   useEffect(() => {
     if (theme === DARK_THEME) {
       document.body.classList.add("dark-mode");
@@ -20,7 +18,6 @@ const SubscriptionRequests = () => {
   return (
     <>
       <SubscriptionRequestsTable />
-      {/* <SubscriptionRequestsTable /> */}
       <button type="button" className="theme-toggle-btn" onClick={toggleTheme}>
         {theme === LIGHT_THEME ? (
           <ImSun className="theme-icon" />
